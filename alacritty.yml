@@ -24,44 +24,44 @@
 #TERM: alacritty
 
 window:
-    # Window dimensions (changes require restart)
-    #
-    # Number of lines/columns (not pixels) in the termina. The number of columns
-    # must be at least `2`, while using a value of `0` for columns and lines will
-    # fall back to the window manager's recommended size.
-    #dimensions:
-    columns: 80
-    lines: 130
+  # Window dimensions (changes require restart)
+  #
+  # Number of lines/columns (not pixels) in the termina. The number of columns
+  # must be at least `2`, while using a value of `0` for columns and lines will
+  # fall back to the window manager's recommended size.
+  #dimensions:
+  columns: 80
+  lines: 130
 
-    # Window position (changes require restart)
-    #
-    # Specified in number of pixels.
-    # If the position is not set, the window manager will handle the placement.
-    #position:
+  # Window position (changes require restart)
+  #
+  # Specified in number of pixels.
+  # If the position is not set, the window manager will handle the placement.
+  #position:
+  x: 0
+  y: 0
+
+  # Window padding (changes require restart)
+  #
+  # Blank space added around the window in pixels. This padding is scaled
+  # by DPI and the specified value is always added at both opposing sides.
+  padding:
     x: 0
     y: 0
 
-    # Window padding (changes require restart)
-    #
-    # Blank space added around the window in pixels. This padding is scaled
-    # by DPI and the specified value is always added at both opposing sides.
-    padding:
-        x: 0
-        y: 0
+  # Spread additional padding evenly around the terminal content.
+  #dynamic_padding: false
 
-    # Spread additional padding evenly around the terminal content.
-    #dynamic_padding: false
-
-    #Window decorations
-    #
-    # Values for `decorations`:
-    #     - full: Borders and title bar
-    #     - none: Neither borders nor title bar
-    #
-    # Values for `decorations` (macOS only):
-    #     - transparent: Title bar, transparent background and title bar buttons
-    #     - buttonless: Title bar, transparent background and no title bar buttons
-    decorations: full
+  #Window decorations
+  #
+  # Values for `decorations`:
+  #     - full: Borders and title bar
+  #     - none: Neither borders nor title bar
+  #
+  # Values for `decorations` (macOS only):
+  #     - transparent: Title bar, transparent background and title bar buttons
+  #     - buttonless: Title bar, transparent background and no title bar buttons
+  decorations: full
 
 # Startup Mode (changes require restart)
 #
@@ -103,54 +103,54 @@ window:
 
 # Font configuration
 font:
-    # Normal (roman) font face
-    normal:
-        # Font family
-        #
-        # Default:
-        #   - (macOS) Menlo
-        #   - (Linux/BSD) monospace
-        #   - (Windows) Consolas
-        # family: monospace
-        family: DroidSansMono Nerd Font
-    # The `style` can be specified to pick a specific face.
-    #style: Regular
-
-    # Bold font face
-    #bold:
+  # Normal (roman) font face
+  normal:
     # Font family
     #
-    # If the bold family is not specified, it will fall back to the
-    # value specified for the normal font.
-    #family: monospace
+    # Default:
+    #   - (macOS) Menlo
+    #   - (Linux/BSD) monospace
+    #   - (Windows) Consolas
+    family: monospace
+    # family: DroidSansMono Nerd Font
+  # The `style` can be specified to pick a specific face.
+  #style: Regular
 
-    # The `style` can be specified to pick a specific face.
-    #style: Bold
+  # Bold font face
+  #bold:
+  # Font family
+  #
+  # If the bold family is not specified, it will fall back to the
+  # value specified for the normal font.
+  #family: monospace
 
-    # Italic font face
-    #italic:
-    # Font family
-    #
-    # If the italic family is not specified, it will fall back to the
-    # value specified for the normal font.
-    #family: monospace
+  # The `style` can be specified to pick a specific face.
+  #style: Bold
 
-    # The `style` can be specified to pick a specific face.
-    #style: Italic
+  # Italic font face
+  #italic:
+  # Font family
+  #
+  # If the italic family is not specified, it will fall back to the
+  # value specified for the normal font.
+  #family: monospace
 
-    # Bold italic font face
-    #bold_italic:
-    # Font family
-    #
-    # If the bold italic family is not specified, it will fall back to the
-    # value specified for the normal font.
-    #family: monospace
+  # The `style` can be specified to pick a specific face.
+  #style: Italic
 
-    # The `style` can be specified to pick a specific face.
-    #style: Bold Italic
+  # Bold italic font face
+  #bold_italic:
+  # Font family
+  #
+  # If the bold italic family is not specified, it will fall back to the
+  # value specified for the normal font.
+  #family: monospace
 
-    # Point size
-    size: 14.0
+  # The `style` can be specified to pick a specific face.
+  #style: Bold Italic
+
+  # Point size
+  # size: 14.0
 # Offset is the extra space around each character. `offset.y` can be thought
 # of as modifying the line spacing, and `offset.x` as modifying the letter
 # spacing.
@@ -257,45 +257,45 @@ font:
 # Base16 Tomorrow Night 256 - alacritty color config
 # Chris Kempson (http://chriskempson.com)
 colors:
-    # Default colors
-    primary:
-        background: "0x1d1f21"
-        foreground: "0xc5c8c6"
+  # Default colors
+  primary:
+    background: "0x1d1f21"
+    foreground: "0xc5c8c6"
 
-    # Colors the cursor will use if `custom_cursor_colors` is true
-    cursor:
-        text: "0x1d1f21"
-        cursor: "0xc5c8c6"
+  # Colors the cursor will use if `custom_cursor_colors` is true
+  cursor:
+    text: "0x1d1f21"
+    cursor: "0xc5c8c6"
 
-    # Normal colors
-    normal:
-        black: "0x1d1f21"
-        red: "0xcc6666"
-        green: "0xb5bd68"
-        yellow: "0xf0c674"
-        blue: "0x81a2be"
-        magenta: "0xb294bb"
-        cyan: "0x8abeb7"
-        white: "0xc5c8c6"
+  # Normal colors
+  normal:
+    black: "0x1d1f21"
+    red: "0xcc6666"
+    green: "0xb5bd68"
+    yellow: "0xf0c674"
+    blue: "0x81a2be"
+    magenta: "0xb294bb"
+    cyan: "0x8abeb7"
+    white: "0xc5c8c6"
 
-    # Bright colors
-    bright:
-        black: "0x969896"
-        red: "0xcc6666"
-        green: "0xb5bd68"
-        yellow: "0xf0c674"
-        blue: "0x81a2be"
-        magenta: "0xb294bb"
-        cyan: "0x8abeb7"
-        white: "0xffffff"
+  # Bright colors
+  bright:
+    black: "0x969896"
+    red: "0xcc6666"
+    green: "0xb5bd68"
+    yellow: "0xf0c674"
+    blue: "0x81a2be"
+    magenta: "0xb294bb"
+    cyan: "0x8abeb7"
+    white: "0xffffff"
 
-    indexed_colors:
-        - { index: 16, color: "0xde935f" }
-        - { index: 17, color: "0xa3685a" }
-        - { index: 18, color: "0x282a2e" }
-        - { index: 19, color: "0x373b41" }
-        - { index: 20, color: "0xb4b7b4" }
-        - { index: 21, color: "0xe0e0e0" }
+  indexed_colors:
+    - { index: 16, color: "0xde935f" }
+    - { index: 17, color: "0xa3685a" }
+    - { index: 18, color: "0x282a2e" }
+    - { index: 19, color: "0x373b41" }
+    - { index: 20, color: "0xb4b7b4" }
+    - { index: 21, color: "0xe0e0e0" }
 # Colors (Gruvbox dark)
 # colors:
 #     primary:
