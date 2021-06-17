@@ -1,7 +1,6 @@
 # dotfiles
 
-##Things to install
-
+## Things to install
 -   install [brew]()
 -   install [fish]()
 -   install [fisher plugin manager for fish]()
