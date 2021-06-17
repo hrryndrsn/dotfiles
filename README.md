@@ -1,11 +1,15 @@
 # dotfiles
 
-##fish
-Setup fish
+##Things to install
 
--   install fish
--   install fisher
--   install hyro prompt
--   install fzf for fish
--   set l to ls -la
--   set cpwd = copy pwd
+-   install [brew]()
+-   install [fish]()
+-   install [fisher plugin manager for fish]()
+-   install [hydro promp]()
+-   install [fzf for fish](https://github.com/jethrokuan/fzf)
+-   install [neovim]()
+-   install [tmux]()
+-   install [tmux plugig manager](https://github.com/tmux-plugins/tpm)
+-   install [nodejs]()
+-   install [rust]()
+-   install [go]()
