@@ -107,7 +107,7 @@ let g:coc_global_extensions = [
   \ 'coc-css',
   \ 'coc-prettier',
   \ 'coc-go',
-  \ 'coc-rls',
+  \ 'coc-rust-analyzer',
   \ ]
 Plug 'tpope/vim-fugitive'
 "ColorSchemes
@@ -143,7 +143,6 @@ Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 Plug 'wojciechkepka/bogster'
 Plug 'wojciechkepka/vim-github-dark'
 Plug 'tpope/vim-commentary'
-
 call plug#end()
 
 "LETS"
