@@ -79,7 +79,7 @@ set incsearch
 set termguicolors
 set scrolloff=8
 set noshowmode
-"set completeopt=menuone,noinsert,noselect
+set completeopt=menuone,noinsert,noselect
 set signcolumn=yes
 set cursorline
 set guioptions-=T "remove toolbar
@@ -159,6 +159,7 @@ let g:lightline = {
       \ 'colorscheme': 'powerline',
       \ }
 let g:AutoPairsShortcutToggle = '<M-='
+let g:completion_matching_strategy_list = ["exact", "substring", "fuzzy"]
 " Try to prevent bad habits like using the arrow keys for movement. This is
 " not the only possible bad habit. For example, holding down the h/j/k/l keys
 " for movement, rather than using more efficient movement commands, is also a
