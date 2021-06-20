@@ -149,8 +149,8 @@ call plug#end()
 "let g:seoul256_background = 233
 "let ayucolors="mirage"
 "let g:gh_color = "soft"
-
-colorscheme base16-tomorrow-night
+let gruvbox_contrast_dark="hard"
+colorscheme gruvbox
 let g:prettier#config#tab_width = 4
 let g:prettier#autoformat = 1
 let g:prettier#autoformat_require_pragma = 0
@@ -302,6 +302,9 @@ nnoremap <space>gb :Git branch<Space>
 nnoremap <space>go :Git checkout<Space>
 nnoremap <space>gps :Git push<CR>
 nnoremap <space>gpl :Dispatch! git pull<CR>
+"interactive merge conflict SPACE-mv to trigger from git status menu
+nnoremap <space>gj :diffget //3<Space>
+nnoremap <space>gf :diffget //2<Space>
 
 "FZF bindings
 let g:fzf_action = {
@@ -332,7 +335,7 @@ nnoremap <leader>ff <cmd>:FZF <cr>
 nnoremap <leader>s <cmd>:FZF <cr>
 nnoremap <leader>r <cmd>:RG <cr>
 nnoremap <silent> <Leader>sw :RG <C-R><C-W><CR>
-nnoremap <leader>gf <cmd>:GFiles <cr>
+"nnoremap <leader>gf <cmd>:GFiles <cr>
 nnoremap <leader>gb <cmd>:GBranches <cr>
 
 " Emmet key bindings
