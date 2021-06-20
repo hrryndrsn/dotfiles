@@ -15,12 +15,17 @@
 - [fzf fish integration](https://github.com/junegunn/fzf/blob/master/shell/key-bindings.fish)
 
 ## Editor
-- [neovim](https://neovim.io/)
+- [neovim v0.5](https://thomasventurini.com/articles/install-neovim-05-in-ubuntu/)
 - [tmux](https://www.hamvocke.com/blog/a-quick-and-easy-guide-to-tmux/)
 - [tmux customization](https://www.hamvocke.com/blog/a-guide-to-customizing-your-tmux-conf/)
+- [tmux plugin manager](https://github.com/tmux-plugins/tpm)
+
+Lang servers for [`nvim builtin lsp`](https://github.com/neovim/nvim-lspconfig): (make sure there have executable in path)
+- [tsserver](https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#tsserver)
+- [tailwindcss](https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#tailwindcss)
+- [rust-analyzer](https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#rust_analyzer)
 
 ## Langs
-- [tmux plugin manager](https://github.com/tmux-plugins/tpm)
 - [nodejs](https://nodejs.org/en/)
 - [rust](https://rustup.rs/)
 - [go](https://formulae.brew.sh/formula/go)
