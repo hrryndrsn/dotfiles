@@ -1,2 +1,2 @@
-set -x BAT_THEME gruvbox-dark
+set -x BAT_THEME base16-256
 fzf_key_bindings

@@ -97,8 +97,6 @@ Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'jparise/vim-graphql'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'iamcco/coc-tailwindcss',  {'do': 'yarn install --frozen-lockfile && yarn run build'}
 Plug 'tpope/vim-fugitive'
 "ColorSchemes
 Plug 'arcticicestudio/nord-vim'
@@ -107,11 +105,7 @@ Plug 'morhetz/gruvbox'
 Plug 'gilgigilgil/anderson.vim'
 Plug 'junegunn/seoul256.vim'
 Plug 'mhartington/oceanic-next'
-" post install (yarn install | npm install) then load plugin only for editing supported files
 Plug 'sbdchd/neoformat'
-Plug 'prettier/vim-prettier', {
-  \ 'do': 'yarn install',
-  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
 Plug 'ThePrimeagen/vim-be-good'
 Plug 'mattn/emmet-vim'
 Plug 'chriskempson/base16-vim'
@@ -151,9 +145,6 @@ call plug#end()
 "let g:gh_color = "soft"
 let gruvbox_contrast_dark="hard"
 colorscheme gruvbox
-let g:prettier#config#tab_width = 4
-let g:prettier#autoformat = 1
-let g:prettier#autoformat_require_pragma = 0
 let g:rustfmt_autosave = 1
 let g:lightline = {
       \ 'colorscheme': 'powerline',
@@ -181,7 +172,7 @@ inoremap <Left>  <ESC>:echoe "Use h"<CR>
 inoremap <Right> <ESC>:echoe "Use l"<CR>
 inoremap <Up>    <ESC>:echoe "Use k"<CR>
 inoremap <Down>  <ESC>:echoe "Use j"<CR>
-" visual remaps 
+" visual remaps
 vnoremap <leader>p "_dP
 """"""""""""""""""""""""""""""""""""""""""""""""
 "NVIM LSP and Typescript
@@ -282,11 +273,23 @@ autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *.rs
 
 """"""""""""""""""""""""""""""""""""""""""""""""
 
-" when running at every change you may want to disable quickfix
-let g:prettier#quickfix_enabled = 0
+"Formatting
+"
+"Debug mode
+"let g:neoformat_verbose = 1 " only affects the verbosity of Neoformat 
 
+"format keyboard shortcut
+nnoremap <space>f <cmd>:Neoformat<CR>
+
+"format on save
+augroup fmt
+  autocmd!
+  autocmd BufWritePre * undojoin | Neoformat
+augroup END
+ "
 "autocmd TextChanged,InsertLeave *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
 
+""""""""""""""""""""""""""""""""""""""""""""""""
 " fugitive git bindings
 nnoremap <space>ga :Git add %:p<CR><CR>
 nnoremap <space>gs :Git<CR>
@@ -350,4 +353,3 @@ let g:user_emmet_settings = {
 \     'extends' : 'jsx',
 \ },
 \}
-
