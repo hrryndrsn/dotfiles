@@ -83,6 +83,8 @@ set completeopt=menuone,noinsert,noselect
 set signcolumn=yes
 set cursorline
 set guioptions-=T "remove toolbar
+set clipboard=unnamedplus
+
 filetype plugin indent on
 
 " PLUGINS "
@@ -127,14 +129,13 @@ Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 Plug 'wojciechkepka/bogster'
 Plug 'wojciechkepka/vim-github-dark'
 Plug 'tpope/vim-commentary'
+Plug 'cespare/vim-toml'
 
-
+" Native LSP
 " Collection of common configurations for the Nvim LSP client
 Plug 'neovim/nvim-lspconfig'
-
 " Extentions to built-in LSP, for example, providing type inlay hints
 Plug 'nvim-lua/lsp_extensions.nvim'
-
 " Autocompletion framework for built-in LSP
 Plug 'nvim-lua/completion-nvim'
 call plug#end()
@@ -143,8 +144,8 @@ call plug#end()
 "let g:seoul256_background = 233
 "let ayucolors="mirage"
 "let g:gh_color = "soft"
-let gruvbox_contrast_dark="hard"
-colorscheme gruvbox
+"let gruvbox_contrast_dark="hard"
+colorscheme base16-tomorrow-night
 let g:rustfmt_autosave = 1
 let g:lightline = {
       \ 'colorscheme': 'powerline',
