@@ -229,6 +229,13 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 )
 EOF
 
+""""""""""""""""""""""""""""""""""""""""""""""""
+"NVIM LSP for Haskell-Language_server
+lua << EOF
+require'lspconfig'.hls.setup{}
+EOF
+""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Code navigation shortcuts
 " as found in :help lsp
 nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
@@ -243,6 +250,9 @@ nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 " re-mapped `gd` to definition
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
 "nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
+
+nnoremap <silent> rn    <cmd>lua vim.lsp.buf.rename()<CR>
+nnoremap <silent> ca    <cmd>lua vim.lsp.buf.code_action()<CR>
 
 " Trigger completion with <tab>
 " found in :help completion
@@ -267,6 +277,9 @@ autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
 " Goto previous/next diagnostic warning/error
 nnoremap <silent> g[ <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
 nnoremap <silent> g] <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
+
+"Dianostic quick fix list
+nnoremap <silent> q    <cmd>lua vim.lsp.diagnostic.set_loclist()<CR>
 
 " Enable type inlay hints
 autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *.rs
