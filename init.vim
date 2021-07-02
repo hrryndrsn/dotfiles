@@ -84,6 +84,7 @@ set signcolumn=yes
 set cursorline
 set guioptions-=T "remove toolbar
 set clipboard=unnamedplus
+set nowrap
 
 filetype plugin indent on
 
@@ -296,10 +297,10 @@ autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *.rs
 nnoremap <space>f <cmd>:Neoformat<CR>
 
 "format on save
-augroup fmt
-  autocmd!
-  autocmd BufWritePre * undojoin | Neoformat
-augroup END
+" augroup fmt
+"   autocmd!
+"   autocmd BufWritePre * undojoin | Neoformat
+" augroup END
  "
 "autocmd TextChanged,InsertLeave *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
 
