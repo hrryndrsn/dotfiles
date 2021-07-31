@@ -92,9 +92,11 @@ filetype plugin indent on
 call plug#begin('~/.vim/plugged')
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim',
-Plug 'stsewd/fzf-checkout.vim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzy-native.nvim'
+" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+" Plug 'junegunn/fzf.vim',
+" Plug 'stsewd/fzf-checkout.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
@@ -423,37 +425,148 @@ nnoremap <space>gpl :Dispatch! git pull<CR>
 nnoremap <space>gj :diffget //3<Space>
 nnoremap <space>gf :diffget //2<Space>
 
+"Telescope bindings
+"nnoremap <leader>ps <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>ps :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})<CR>
+nnoremap <leader>pw :lua require('telescope.builtin').grep_string { search = vim.fn.expand("<cword>") }<CR>
+nnoremap <leader>pf <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>pb <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>vh <cmd>lua require('telescope.builtin').help_tags()<cr>
+nnoremap <leader>m <cmd>lua require('telescope.builtin').man_pages()<cr>
+
+"Telescope config
+lua << EOF
+local actions = require('telescope.actions')
+require('telescope').setup{
+  defaults = {
+    mappings = {
+        i = {
+          ["<C-j>"] = actions.move_selection_next,
+          ["<C-k>"] = actions.move_selection_previous,
+
+          ["<C-c>"] = actions.close,
+
+          ["<Down>"] = actions.move_selection_next,
+          ["<Up>"] = actions.move_selection_previous,
+
+          ["<CR>"] = actions.select_default + actions.center,
+          ["<C-x>"] = actions.select_horizontal,
+          ["<C-v>"] = actions.select_vertical,
+          ["<C-t>"] = actions.select_tab,
+
+          ["<C-u>"] = actions.preview_scrolling_up,
+          ["<C-d>"] = actions.preview_scrolling_down,
+
+          ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
+          ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
+          ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
+          ["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+          ["<C-l>"] = actions.complete_tag,
+        },
+
+        n = {
+          ["<esc>"] = actions.close,
+          ["<CR>"] = actions.select_default + actions.center,
+          ["<C-x>"] = actions.select_horizontal,
+          ["<C-v>"] = actions.select_vertical,
+          ["<C-t>"] = actions.select_tab,
+
+          ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
+          ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
+          ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
+          ["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+
+          -- TODO: This would be weird if we switch the ordering.
+          ["<C-j>"] = actions.move_selection_next,
+          ["<C-k>"] = actions.move_selection_previous,
+          ["H"] = actions.move_to_top,
+          ["M"] = actions.move_to_middle,
+          ["L"] = actions.move_to_bottom,
+
+          ["<Down>"] = actions.move_selection_next,
+          ["<Up>"] = actions.move_selection_previous,
+
+          ["<C-u>"] = actions.preview_scrolling_up,
+          ["<C-d>"] = actions.preview_scrolling_down,
+        },
+
+    },
+    vimgrep_arguments = {
+      'rg',
+      '--color=never',
+      '--no-heading',
+      '--with-filename',
+      '--line-number',
+      '--column',
+      '--smart-case'
+    },
+    prompt_prefix = "> ",
+    selection_caret = "> ",
+    entry_prefix = "  ",
+    initial_mode = "insert",
+    selection_strategy = "reset",
+    sorting_strategy = "descending",
+    layout_strategy = "horizontal",
+    layout_config = {
+      horizontal = {
+        mirror = false,
+      },
+      vertical = {
+        mirror = false,
+      },
+    },
+    file_sorter =  require'telescope.sorters'.get_fuzzy_file,
+    file_ignore_patterns = {},
+    generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
+    winblend = 0,
+    border = {},
+    borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
+    color_devicons = true,
+    use_less = true,
+    path_display = {},
+    set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
+    file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
+    grep_previewer = require'telescope.previewers'.vim_buffer_vimgrep.new,
+    qflist_previewer = require'telescope.previewers'.vim_buffer_qflist.new,
+
+    -- Developer configurations: Not meant for general override
+    buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker
+  },
+}
+
+EOF
+
 "FZF bindings
-let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-x': 'split',
-  \ 'ctrl-v': 'vsplit' }
+"let g:fzf_action = {
+"  \ 'ctrl-t': 'tab split',
+"  \ 'ctrl-x': 'split',
+"  \ 'ctrl-v': 'vsplit' }
 
-let g:fzf_layout = { 'window': { 'width': 1, 'height': 1 } }
-let g:fzf_tags_command = 'ctags -R'
+"let g:fzf_layout = { 'window': { 'width': 1, 'height': 1 } }
+"let g:fzf_tags_command = 'ctags -R'
 
-let $FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --layout reverse --margin=1,4 --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
-let $FZF_DEFAULT_COMMAND = 'rg --files --ignore-case --hidden -g "!{.git,node_modules,vendor}/*"'
-command! -bang -nargs=? -complete=dir Files
-     \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+"let $FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --layout reverse --margin=1,4 --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
+"let $FZF_DEFAULT_COMMAND = 'rg --files --ignore-case --hidden -g "!{.git,node_modules,vendor}/*"'
+"command! -bang -nargs=? -complete=dir Files
+"     \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
-function! RipgrepFzf(query, fullscreen)
-  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
-  let initial_command = printf(command_fmt, shellescape(a:query))
-  let reload_command = printf(command_fmt, '{q}')
-  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
-  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
-endfunction
+"function! RipgrepFzf(query, fullscreen)
+"  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
+"  let initial_command = printf(command_fmt, shellescape(a:query))
+"  let reload_command = printf(command_fmt, '{q}')
+"  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+"  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+"endfunction
 
-command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+"command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 
-" Find files using fzf command-line sugar.
-nnoremap <leader>ff <cmd>:FZF <cr>
-nnoremap <leader>s <cmd>:FZF <cr>
-nnoremap <leader>r <cmd>:RG <cr>
-nnoremap <silent> <Leader>sw :RG <C-R><C-W><CR>
-"nnoremap <leader>gf <cmd>:GFiles <cr>
-nnoremap <leader>gb <cmd>:GBranches <cr>
+"" Find files using fzf command-line sugar.
+"nnoremap <leader>ff <cmd>:FZF <cr>
+"nnoremap <leader>s <cmd>:FZF <cr>
+"nnoremap <leader>r <cmd>:RG <cr>
+"nnoremap <silent> <Leader>sw :RG <C-R><C-W><CR>
+""nnoremap <leader>gf <cmd>:GFiles <cr>
+"nnoremap <leader>gb <cmd>:GBranches <cr>
 
 " Emmet key bindings
 let g:user_emmet_mode='n'
