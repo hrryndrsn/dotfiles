@@ -122,11 +122,6 @@ Plug 'nvim-lua/lsp_extensions.nvim'
 Plug 'nvim-lua/completion-nvim'
 call plug#end()
 
-"LETS"
-"let g:seoul256_background = 233
-"let ayucolors="mirage"
-"let g:gh_color = "soft"
-"let gruvbox_contrast_dark="hard"
 colorscheme base16-tomorrow-night
 let g:rustfmt_autosave = 1
 let g:lightline = {
@@ -157,7 +152,30 @@ inoremap <Up>    <ESC>:echoe "Use k"<CR>
 inoremap <Down>  <ESC>:echoe "Use j"<CR>
 " visual remaps
 vnoremap <leader>p "_dP
-""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Y copy from cursor to end of line
+nnoremap Y y$
+" keep cursor centered
+nnoremap n nzzzv
+nnoremap N Nzzzv
+nnoremap J mzJ`z
+" undo break points
+inoremap , ,<c-g>u
+inoremap . .<c-g>u
+inoremap ! !<c-g>u
+inoremap ? ?<c-g>u
+" jumplist mutations
+nnoremap <expr> k (v:count > 5 ? "m'" . v:count : "") . 'k'
+nnoremap <expr> j (v:count > 5 ? "m'" . v:count : "") . 'j'
+" Moving text
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+inoremap <C-j> :m .+1<CR>==
+inoremap <C-k> :m .-2<CR>==
+nnoremap <leader>k :m .-2<CR>==
+nnoremap <leader>j :m .+1<CR>==
+
+"""""""""""""""""""""""""""""""""""""""""""""""
 "NVIM LSP and Typescript
 "https://jose-elias-alvarez.medium.com/configuring-neovims-lsp-client-for-typescript-development-5789d58ea9c
 lua << EOF
