@@ -94,43 +94,20 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
-" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-" Plug 'junegunn/fzf.vim',
-" Plug 'stsewd/fzf-checkout.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'jparise/vim-graphql'
 Plug 'tpope/vim-fugitive'
-"ColorSchemes
-Plug 'arcticicestudio/nord-vim'
-Plug 'jnurmine/zenburn'
-Plug 'morhetz/gruvbox'
-Plug 'gilgigilgil/anderson.vim'
-Plug 'junegunn/seoul256.vim'
-Plug 'mhartington/oceanic-next'
 Plug 'sbdchd/neoformat'
 Plug 'ThePrimeagen/vim-be-good'
 Plug 'mattn/emmet-vim'
 Plug 'chriskempson/base16-vim'
-Plug 'sjl/badwolf'
-Plug 'altercation/vim-colors-solarized'
-Plug 'drewtempelmeyer/palenight.vim'
-Plug 'ayu-theme/ayu-vim' " or other package manager
-Plug 'romainl/apprentice'
-Plug 'machakann/vim-sandwich'
-Plug 'ajmwagar/vim-deus'
-Plug 'hardselius/warlock'
 Plug 'jiangmiao/auto-pairs'
-Plug 'patstockwell/vim-monokai-tasty'
 Plug 'rust-lang/rust.vim'
-Plug 'joshdick/onedark.vim'
 Plug 'itchyny/lightline.vim'
-Plug 'cocopon/iceberg.vim'
 Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
-Plug 'wojciechkepka/bogster'
-Plug 'wojciechkepka/vim-github-dark'
 Plug 'tpope/vim-commentary'
 Plug 'cespare/vim-toml'
 Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
@@ -535,38 +512,6 @@ require('telescope').setup{
 }
 
 EOF
-
-"FZF bindings
-"let g:fzf_action = {
-"  \ 'ctrl-t': 'tab split',
-"  \ 'ctrl-x': 'split',
-"  \ 'ctrl-v': 'vsplit' }
-
-"let g:fzf_layout = { 'window': { 'width': 1, 'height': 1 } }
-"let g:fzf_tags_command = 'ctags -R'
-
-"let $FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --layout reverse --margin=1,4 --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
-"let $FZF_DEFAULT_COMMAND = 'rg --files --ignore-case --hidden -g "!{.git,node_modules,vendor}/*"'
-"command! -bang -nargs=? -complete=dir Files
-"     \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
-
-"function! RipgrepFzf(query, fullscreen)
-"  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
-"  let initial_command = printf(command_fmt, shellescape(a:query))
-"  let reload_command = printf(command_fmt, '{q}')
-"  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
-"  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
-"endfunction
-
-"command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
-
-"" Find files using fzf command-line sugar.
-"nnoremap <leader>ff <cmd>:FZF <cr>
-"nnoremap <leader>s <cmd>:FZF <cr>
-"nnoremap <leader>r <cmd>:RG <cr>
-"nnoremap <silent> <Leader>sw :RG <C-R><C-W><CR>
-""nnoremap <leader>gf <cmd>:GFiles <cr>
-"nnoremap <leader>gb <cmd>:GBranches <cr>
 
 " Emmet key bindings
 let g:user_emmet_mode='n'
