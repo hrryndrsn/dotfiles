@@ -284,46 +284,15 @@ lua << EOF
 require'lspconfig'.tailwindcss.setup{}
 EOF
 """"""""""""""""""""""""""""""""""""""""""""""""
-"
-"
-"NVIM LSP and RUST
+
+" Configure nvim native lsp
 " Set completeopt to have a better completion experience
 set completeopt=menuone,noinsert,noselect
-
 " Avoid showing extra messages when using completion
 set shortmess+=c
-
-
-" Configure lsp
-" https://github.com/neovim/nvim-lspconfig#rust_analyzer
-lua <<EOF
-
--- nvim_lsp object
-local nvim_lsp = require'lspconfig'
-
--- function to attach completion when setting up lsp
-local on_attach = function(client)
-    require'completion'.on_attach(client)
-end
-
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-
--- Enable rust_analyzer
-nvim_lsp.rust_analyzer.setup({
-    capabilities=capabilities,
-    on_attach=on_attach
-})
-
--- Enable diagnostics
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics, {
-    virtual_text = true,
-    signs = true,
-    update_in_insert = true,
-  }
-)
-EOF
+" LSP Configs
+lua require('lspconfigs/rust')
+lua require('lspconfigs/bashls')
 
 """"""""""""""""""""""""""""""""""""""""""""""""
 "NVIM LSP for Haskell-Language_server
@@ -338,7 +307,6 @@ require'lspconfig'.gopls.setup{}
 EOF
 """"""""""""""""""""""""""""""""""""""""""""""""
 "Bash lsp config 
-lua require('bashls')
 " Code navigation shortcuts
 " as found in :help lsp
 nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
