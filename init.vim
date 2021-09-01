@@ -104,7 +104,7 @@ Plug 'sbdchd/neoformat'
 Plug 'ThePrimeagen/vim-be-good'
 Plug 'mattn/emmet-vim'
 Plug 'chriskempson/base16-vim'
-Plug 'jiangmiao/auto-pairs'
+" Plug 'jiangmiao/auto-pairs'
 Plug 'rust-lang/rust.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
@@ -125,9 +125,9 @@ call plug#end()
 colorscheme base16-tomorrow-night
 let g:rustfmt_autosave = 1
 let g:lightline = {
-      \ 'colorscheme': 'powerline',
-      \ }
-let g:AutoPairsShortcutToggle = '<M-='
+            \ 'colorscheme': 'powerline',
+            \ }
+" let g:AutoPairsShortcutToggle = '<M-p>'
 let g:completion_matching_strategy_list = ["exact", "substring", "fuzzy"]
 " Try to prevent bad habits like using the arrow keys for movement. This is
 " not the only possible bad habit. For example, holding down the h/j/k/l keys
@@ -318,7 +318,7 @@ nvim_lsp.rust_analyzer.setup({
 -- Enable diagnostics
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
-    virtual_text = false,
+    virtual_text = true,
     signs = true,
     update_in_insert = true,
   }
@@ -331,7 +331,14 @@ lua << EOF
 require'lspconfig'.hls.setup{}
 EOF
 """"""""""""""""""""""""""""""""""""""""""""""""
-
+""""""""""""""""""""""""""""""""""""""""""""""""
+"NVIM LSP for Haskell-Language_server
+lua << EOF
+require'lspconfig'.gopls.setup{}
+EOF
+""""""""""""""""""""""""""""""""""""""""""""""""
+"Bash lsp config 
+lua require('bashls')
 " Code navigation shortcuts
 " as found in :help lsp
 nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
@@ -424,7 +431,8 @@ nnoremap <space>gf :diffget //2<Space>
 "nnoremap <leader>ps <cmd>lua require('telescope.builtin').live_grep()<cr>
 nnoremap <leader>ps :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})<CR>
 nnoremap <leader>pw :lua require('telescope.builtin').grep_string { search = vim.fn.expand("<cword>") }<CR>
-nnoremap <leader>pf <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>pf <cmd>lua require('telescope.builtin').find_files({ hidden = true })<cr>
+nnoremap <leader>pg <cmd>lua require('telescope.builtin').git_files()<cr>
 nnoremap <leader>pb <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>vh <cmd>lua require('telescope.builtin').help_tags()<cr>
 nnoremap <leader>m <cmd>lua require('telescope.builtin').man_pages()<cr>
