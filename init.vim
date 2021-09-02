@@ -112,7 +112,6 @@ Plug 'tpope/vim-commentary'
 Plug 'cespare/vim-toml'
 Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
 Plug 'jose-elias-alvarez/null-ls.nvim'
-
 " Native LSP
 " Collection of common configurations for the Nvim LSP client
 Plug 'neovim/nvim-lspconfig'
@@ -122,32 +121,32 @@ Plug 'nvim-lua/lsp_extensions.nvim'
 Plug 'nvim-lua/completion-nvim'
 call plug#end()
 
+" COLORSCHEME
 colorscheme base16-tomorrow-night
+
+" GLOBALS
+let mapleader = " "
 let g:rustfmt_autosave = 1
 let g:lightline = {
             \ 'colorscheme': 'powerline',
             \ }
-
 let g:completion_matching_strategy_list = ["exact", "substring", "fuzzy"]
 
+"REMAPS
 nnoremap <Left>  :echoe "Use h"<CR>
 nnoremap <Right> :echoe "Use l"<CR>
 nnoremap <Up>    :echoe "Use k"<CR>
 nnoremap <Down>  :echoe "Use j"<CR>
-
-"quick scope exit
+" quick scope exit
 nnoremap <Esc> :q<CR>
 nnoremap <leader>w :w<CR>
-let mapleader = " "
-
-" ...and in insert mode
+" Avoid using arrows
 inoremap <Left>  <ESC>:echoe "Use h"<CR>
 inoremap <Right> <ESC>:echoe "Use l"<CR>
 inoremap <Up>    <ESC>:echoe "Use k"<CR>
 inoremap <Down>  <ESC>:echoe "Use j"<CR>
-" visual remaps
+" paste over selection
 vnoremap <leader>p "_dP
-
 " Y copy from cursor to end of line
 nnoremap Y y$
 " keep cursor centered
@@ -170,40 +169,34 @@ inoremap <C-k> :m .-2<CR>==
 nnoremap <leader>k :m .-2<CR>==
 nnoremap <leader>j :m .+1<CR>==
 
+" LANGUAGE SUPPORT
 " Configure nvim native lsp
-lua require('nvim-lspconfig')
+lua require('hrryndrsn/nvim-lspconfig')
 " Set completeopt to have a better completion experience
 set completeopt=menuone,noinsert,noselect
 " Avoid showing extra messages when using completion
 set shortmess+=c
-
 " Trigger completion with <tab>
 " found in :help completion
 " Use <Tab> and <S-Tab> to navigate through popup menu
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
 " use <Tab> as trigger keys
 imap <Tab> <Plug>(completion_smart_tab)
 imap <S-Tab> <Plug>(completion_smart_s_tab)
-
 " have a fixed column for the diagnostics to appear in
 " this removes the jitter when warnings/errors flow in
 set signcolumn=yes
-
 " Set updatetime for CursorHold
 " 300ms of no cursor movement to trigger CursorHold
 set updatetime=300
 " Show diagnostic popup on cursor hover
 autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
-
 " Enable type inlay hints
 autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *.rs
 \ lua require'lsp_extensions'.inlay_hints{ prefix = '', highlight = "Comment", enabled = {"TypeHint", "ChainingHint", "ParameterHint"} }
 
-""""""""""""""""""""""""""""""""""""""""""""""""
-
-"Formatting
+"FORMATTING
 "
 "Debug mode
 "let g:neoformat_verbose = 1 " only affects the verbosity of Neoformat 
@@ -219,7 +212,7 @@ nnoremap <space>f <cmd>:Neoformat<CR>
  "
 "autocmd TextChanged,InsertLeave *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
 
-""""""""""""""""""""""""""""""""""""""""""""""""
+" GIT
 " fugitive git bindings
 nnoremap <space>ga :Git add %:p<CR><CR>
 nnoremap <space>gs :Git<CR>
@@ -240,6 +233,8 @@ nnoremap <space>gpl :Dispatch! git pull<CR>
 nnoremap <space>gj :diffget //3<Space>
 nnoremap <space>gf :diffget //2<Space>
 
+"FUZZY FINDER
+lua require('hrryndrsn/telescope')
 "Telescope bindings
 "nnoremap <leader>ps <cmd>lua require('telescope.builtin').live_grep()<cr>
 nnoremap <leader>ps :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})<CR>
@@ -250,108 +245,8 @@ nnoremap <leader>pb <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>vh <cmd>lua require('telescope.builtin').help_tags()<cr>
 nnoremap <leader>m <cmd>lua require('telescope.builtin').man_pages()<cr>
 
-"Telescope config
-lua << EOF
-local actions = require('telescope.actions')
-require('telescope').setup{
-  defaults = {
-    mappings = {
-        i = {
-          ["<C-j>"] = actions.move_selection_next,
-          ["<C-k>"] = actions.move_selection_previous,
 
-          ["<C-c>"] = actions.close,
-
-          ["<Down>"] = actions.move_selection_next,
-          ["<Up>"] = actions.move_selection_previous,
-
-          ["<CR>"] = actions.select_default + actions.center,
-          ["<C-x>"] = actions.select_horizontal,
-          ["<C-v>"] = actions.select_vertical,
-          ["<C-t>"] = actions.select_tab,
-
-          ["<C-u>"] = actions.preview_scrolling_up,
-          ["<C-d>"] = actions.preview_scrolling_down,
-
-          ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
-          ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
-          ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
-          ["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
-          ["<C-l>"] = actions.complete_tag,
-        },
-
-        n = {
-          ["<esc>"] = actions.close,
-          ["<CR>"] = actions.select_default + actions.center,
-          ["<C-x>"] = actions.select_horizontal,
-          ["<C-v>"] = actions.select_vertical,
-          ["<C-t>"] = actions.select_tab,
-
-          ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
-          ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
-          ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
-          ["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
-
-          -- TODO: This would be weird if we switch the ordering.
-          ["<C-j>"] = actions.move_selection_next,
-          ["<C-k>"] = actions.move_selection_previous,
-          ["H"] = actions.move_to_top,
-          ["M"] = actions.move_to_middle,
-          ["L"] = actions.move_to_bottom,
-
-          ["<Down>"] = actions.move_selection_next,
-          ["<Up>"] = actions.move_selection_previous,
-
-          ["<C-u>"] = actions.preview_scrolling_up,
-          ["<C-d>"] = actions.preview_scrolling_down,
-        },
-
-    },
-    vimgrep_arguments = {
-      'rg',
-      '--color=never',
-      '--no-heading',
-      '--with-filename',
-      '--line-number',
-      '--column',
-      '--smart-case'
-    },
-    prompt_prefix = "> ",
-    selection_caret = "> ",
-    entry_prefix = "  ",
-    initial_mode = "insert",
-    selection_strategy = "reset",
-    sorting_strategy = "descending",
-    layout_strategy = "horizontal",
-    layout_config = {
-      horizontal = {
-        mirror = false,
-      },
-      vertical = {
-        mirror = false,
-      },
-    },
-    file_sorter =  require'telescope.sorters'.get_fuzzy_file,
-    file_ignore_patterns = {},
-    generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
-    winblend = 0,
-    border = {},
-    borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
-    color_devicons = true,
-    use_less = true,
-    path_display = {},
-    set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
-    file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
-    grep_previewer = require'telescope.previewers'.vim_buffer_vimgrep.new,
-    qflist_previewer = require'telescope.previewers'.vim_buffer_qflist.new,
-
-    -- Developer configurations: Not meant for general override
-    buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker
-  },
-}
-
-EOF
-
+" EMMET
 " Emmet key bindings
 let g:user_emmet_mode='n'
 let g:user_emmet_leader_key=','
