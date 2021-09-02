@@ -122,7 +122,9 @@ Plug 'nvim-lua/completion-nvim'
 call plug#end()
 
 " COLORSCHEME
-colorscheme base16-tomorrow-night
+colorscheme base16-gruvbox-dark-hard
+" Brighter comments
+call Base16hi("Comment", g:base16_gui09, "", g:base16_cterm09, "", "", "")
 
 " GLOBALS
 let mapleader = " "
@@ -192,7 +194,7 @@ set signcolumn=yes
 set updatetime=300
 " Show diagnostic popup on cursor hover
 autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
-" Enable type inlay hints
+" Enable rust type inlay hints
 autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *.rs
 \ lua require'lsp_extensions'.inlay_hints{ prefix = '', highlight = "Comment", enabled = {"TypeHint", "ChainingHint", "ParameterHint"} }
 
