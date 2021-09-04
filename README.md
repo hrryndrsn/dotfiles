@@ -24,8 +24,17 @@ Lang servers for [`nvim builtin lsp`](https://github.com/neovim/nvim-lspconfig):
 - [tsserver](https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#tsserver)
 - [tailwindcss](https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#tailwindcss)
 - [rust-analyzer](https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#rust_analyzer)
+- [lau](https://www.chrisatmachine.com/Neovim/28-neovim-lua-development)
 
 ## Langs
 - [nodejs](https://nodejs.org/en/)
 - [rust](https://rustup.rs/)
 - [go](https://formulae.brew.sh/formula/go)
+
+## Link configs
+```bash
+#link personal configs as a lua module
+ln -sf ~/Code/hrryndrsn/dotfiles/lua/hrryndrsn ~/.config/nvim/lua/
+#link main init.lua file
+ln -sf ~/Code/hrryndrsn/dotfiles/init.lua ~/.config/nvim/init.lua
+```
