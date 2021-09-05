@@ -9,6 +9,8 @@ end
 return require('packer').startup(function(use)
 	-- Colorscheme
 	use 'chriskempson/base16-vim'
+	use 'tjdevries/colorbuddy.vim'
+	use 'tjdevries/gruvbuddy.nvim'
 	-- LSP
 	use 'neovim/nvim-lspconfig'
 	use 'nvim-lua/lsp_extensions.nvim'

@@ -24,7 +24,7 @@ Lang servers for [`nvim builtin lsp`](https://github.com/neovim/nvim-lspconfig):
 - [tsserver](https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#tsserver)
 - [tailwindcss](https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#tailwindcss)
 - [rust-analyzer](https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#rust_analyzer)
-- [lau](https://www.chrisatmachine.com/Neovim/28-neovim-lua-development)
+- [lua](https://www.chrisatmachine.com/Neovim/28-neovim-lua-development)
 
 ## Langs
 - [nodejs](https://nodejs.org/en/)
@@ -38,3 +38,18 @@ ln -sf ~/Code/hrryndrsn/dotfiles/lua/hrryndrsn ~/.config/nvim/lua/
 #link main init.lua file
 ln -sf ~/Code/hrryndrsn/dotfiles/init.lua ~/.config/nvim/init.lua
 ```
+## utils
+- [aws cli](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html)
+- [aws sam cli](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install-linux.html#serverless-sam-cli-install-linux-iam-permissions)
+
+
+## misc commands
+fish config
+```bash
+set --universal hydro_color_pwd blue
+set --universal hydro_color_git yellow
+
+alias vim"nvim"
+funcsave vim
+```
+

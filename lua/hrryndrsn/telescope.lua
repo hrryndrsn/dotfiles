@@ -1,4 +1,5 @@
 -- Telescope config
+-- mostly defaults pulled from the docs
 local actions = require('telescope.actions')
 require('telescope').setup{
   defaults = {
