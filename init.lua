@@ -5,4 +5,3 @@ require 'hrryndrsn/plugins'
 require 'hrryndrsn/telescope'
 require 'hrryndrsn/nvim-lspconfig'
 require 'hrryndrsn/colorscheme'
-
