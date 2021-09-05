@@ -50,3 +50,23 @@ keymap('n', '<leader>d', ':Gdiff<CR>', { noremap = true, silent = true })
 keymap('n', '<leader>ge', ':Gedit<CR>', { noremap = true, silent = true })
 keymap('n', '<leader>gr', ':Gread<CR>', { noremap = true, silent = true })
 keymap('n', '<leader>gw', ':Gwrite<CR><CR>', { noremap = true, silent = true })
+keymap('n', '<leader>gl', ':silent! Glog<CR>:bot copen<CR>', { noremap = true, silent = true })
+keymap('n', '<leader>gp', ':Ggrep<space>', { noremap = true, silent = true })
+keymap('n', '<leader>gm', ':Gmove<space>', { noremap = true, silent = true })
+keymap('n', '<leader>gb', ':Git branch<Space>', { noremap = true, silent = true })
+keymap('n', '<leader>go', ':Git checkout<Space>', { noremap = true, silent = true })
+keymap('n', '<leader>gps', ':Git push<CR>', { noremap = true, silent = true })
+keymap('n', '<leader>gpl', ':Dispatch! git pull<CR>', { noremap = true, silent = true })
+-- Interactive merge conflict SPAVE-mv to trigger from git status menu
+keymap('n', '<leader>gj', ':diffget //3<Space>', { noremap = true, silent = true })
+keymap('n', '<leader>gf', ':diffget //2<Space>', { noremap = true, silent = true })
+-- TELESCOPE
+keymap('n', '<leader>rg', '<cmd>Telescope live_grep<cr>', { noremap = true, silent = true })
+keymap('n', '<leader>pw', '<cmd>Telescope grep_string<CR>', { noremap = true, silent = true })
+keymap('n', '<leader>pf', '<cmd>Telescope find_files<CR>', { noremap = true, silent = true })
+keymap('n', '<leader>pg', '<cmd>Telescope git_files<CR>', { noremap = true, silent = true })
+keymap('n', '<leader>pb', '<cmd>Telescope buffers<CR>', { noremap = true, silent = true })
+keymap('n', '<leader>vh', '<cmd>Telescope help_tags<CR>', { noremap = true, silent = true })
+keymap('n', '<leader>m', '<cmd>Telescope man_pages<CR>', { noremap = true, silent = true })
+
+
