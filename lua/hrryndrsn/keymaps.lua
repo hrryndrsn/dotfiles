@@ -68,5 +68,4 @@ keymap('n', '<leader>pg', '<cmd>Telescope git_files<CR>', { noremap = true, sile
 keymap('n', '<leader>pb', '<cmd>Telescope buffers<CR>', { noremap = true, silent = true })
 keymap('n', '<leader>vh', '<cmd>Telescope help_tags<CR>', { noremap = true, silent = true })
 keymap('n', '<leader>m', '<cmd>Telescope man_pages<CR>', { noremap = true, silent = true })
-
-
+keymap('n', '<leader>pc', '<cmd>Telescope current_buffer_fuzzy_find<CR>', { noremap = true, silent = true })
