@@ -36,6 +36,7 @@ local on_attach = function(client, bufnr)
 
 end
 
+-- MAIN CONFIG
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
 local servers = {  'rust_analyzer', 'tsserver', 'tailwindcss', 'hls', 'bashls' }
@@ -47,6 +48,19 @@ for _, lsp in ipairs(servers) do
     }
   }
 end
+
+-- TYPESCRIPT EXTENSIONS
+-- ESLint through null-ls
+-- https://github.com/jose-elias-alvarez/nvim-lsp-ts-utils
+-- https://github.com/jose-elias-alvarez/null-ls.nvim
+require("null-ls").config({
+    -- you must define at least one source for the plugin to work
+    sources = { require("null-ls").builtins.formatting.stylua }
+})
+nvim_lsp["null-ls"].setup({
+    -- see the nvim-lspconfig documentation for available configuration options
+    on_attach = on_attach
+})
 
 -- LUA
 -- https://github.com/sumneko/lua-language-server/wiki/Build-and-Run-(Standalone)
@@ -160,3 +174,13 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     update_in_insert = true,
   }
 )
+
+-- Autocommands
+-- Set updatetime for CursorHold
+-- 300ms of no cursor movement to trigger CursorHold
+vim.g.updatetime = 300
+-- Show diagnostic popup on cursor hover
+vim.cmd [[autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()]]
+-- Enable rust type inlay hints
+vim.cmd [[autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *.rs :lua require'lsp_extensions'.inlay_hints{ prefix = '', highlight = "Comment", enabled = {"TypeHint", "ChainingHint", "ParameterHint"} }]]
+
