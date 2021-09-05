@@ -28,6 +28,7 @@ return require('packer').startup(function(use)
 	  'nvim-telescope/telescope.nvim',
 	  requires = { {'nvim-lua/plenary.nvim'} }
 	}
+    use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
     -- Lang plugins
     use 'pangloss/vim-javascript'
     use 'leafgarland/typescript-vim'
