@@ -66,7 +66,7 @@ vim.opt.cursorline = true
 -- Clipboard settings
 -- ALWAYS use the clipboard for ALL operations (instead of interacting with
 --the '+' and/or '*' registers explicitly)
-vim.opt.clipboard = 'unnamedplus'
+--vim.opt.clipboard = 'unnamedplus'
 -- Wrappring settings
 vim.opt.wrap = false
 -- Filetype detection
