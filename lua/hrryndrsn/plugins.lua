@@ -35,6 +35,8 @@ return require('packer').startup(function(use)
     use 'peitalin/vim-jsx-typescript'
     use 'jparise/vim-graphql'
     use 'mattn/emmet-vim'
+    use 'cespare/vim-toml'
+    use 'stephpy/vim-yaml'
     use 'rust-lang/rust.vim'
     -- Rust plugins - https://sharksforarms.dev/posts/neovim-rust/
     -- Completion framework
