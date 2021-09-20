@@ -9,7 +9,7 @@ keymap('n', '<DOWN>', ':echo "Use j"<CR>', { noremap = true, silent = true })
 keymap('n', '<ESC>', ':q<CR>', { noremap = true, silent = true })
 keymap('n', '<leader>w', ':w<CR>', { noremap = true, silent = true })
 -- Paste over selection
-keymap('v', '<leader>p', 'p "_dP', { noremap = true, silent = true })
+keymap('v', '<leader>p', '"_dP', { noremap = true, silent = true })
 -- Y copy from cursor to end of line
 keymap('n', 'Y', 'y$', { noremap = true, silent = true })
 -- Keep cursor centered when scrolling search matches
