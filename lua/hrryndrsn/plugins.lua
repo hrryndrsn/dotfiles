@@ -23,6 +23,26 @@ return require('packer').startup(function(use)
         'jose-elias-alvarez/null-ls.nvim',
 	    requires = { {'nvim-lua/plenary.nvim'} }
     }
+    -- Completion framework
+    use 'hrsh7th/nvim-cmp'
+
+    -- LSP completion source for nvim-cmp
+    use 'hrsh7th/cmp-nvim-lsp'
+
+    -- Snippet completion source for nvim-cmp
+    use 'hrsh7th/cmp-vsnip'
+
+    -- Other usefull completion sources
+    use 'hrsh7th/cmp-path'
+    use 'hrsh7th/cmp-buffer'
+
+    -- See hrsh7th's other plugins for more completion sources!
+
+    -- To enable more of the features of rust-analyzer, such as inlay hints and more!
+    use 'simrat39/rust-tools.nvim'
+
+    -- Snippet engine
+    use 'hrsh7th/vim-vsnip'
 	--Telescope
 	use {
 	  'nvim-telescope/telescope.nvim',
