@@ -104,9 +104,9 @@ nvim_lsp.yamlls.setup {
       debounce_text_changes = 150,
     },
     settings = {
-        yaml = { 
+        yaml = {
             customTags = {
-                -- AWS cloudformation tags 
+                -- AWS cloudformation tags
                 -- https://github.com/redhat-developer/yaml-language-server/issues/77
                 "!And scalar",
                 "!And mapping",
@@ -177,18 +177,30 @@ vim.g.updatetime = 300
 -- Show diagnostic popup on cursor hover
 vim.cmd [[autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()]]
 -- Enable rust type inlay hints
-vim.cmd [[autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *.rs :lua require'lsp_extensions'.inlay_hints{ prefix = '', highlight = "Comment", enabled = {"TypeHint", "ChainingHint", "ParameterHint"} }]]
+-- vim.cmd [[autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *.rs :lua require'lsp_extensions'.inlay_hints{ prefix = '', highlight = "Type", only_current_line = true, enabled = {"TypeHint", "ChainingHint", "ParameterHint"} }]]
 
--- Rust tools setup 
---https://sharksforarms.dev/posts/neovim-rust/
+-- Rust tools setup
+-- https://sharksforarms.dev/posts/neovim-rust/
+-- https://github.com/simrat39/rust-tools.nvim
 local opts = {
     tools = { -- rust-tools options
         autoSetHints = true,
         hover_with_actions = true,
         inlay_hints = {
-            show_parameter_hints = false,
+            -- Only show inlay hints for the current line
+            only_current_line = true,
+            -- Event which triggers a refersh of the inlay hints.
+            -- You can make this "CursorMoved" or "CursorMoved,CursorMovedI" but
+            -- not that this may cause  higher CPU usage.
+            -- This option is only respected when only_current_line and
+            -- autoSetHints both are true.
+            only_current_line_autocmd = "CursorMoved",
+            -- wheter to show parameter hints with the inlay hints or not
+            show_parameter_hints = true,
             parameter_hints_prefix = "",
             other_hints_prefix = "",
+             -- The color of the hints
+            highlight = "Comment",
         },
     },
 
