@@ -227,6 +227,9 @@ require('rust-tools').setup(opts)
 
 -- Setup Completion
 -- See https://github.com/hrsh7th/nvim-cmp#basic-configuration
+-- Completion behavior
+vim.opt.completeopt = { 'menuone' ,'noinsert', 'noselect' }
+vim.g.completion_matching_strategy_list = {"exact", "substring", "fuzzy"}
 local cmp = require'cmp'
 cmp.setup({
   -- Enable LSP snippets

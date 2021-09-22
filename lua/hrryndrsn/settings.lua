@@ -56,9 +56,6 @@ vim.opt.termguicolors = true
 vim.opt.scrolloff = 8
 -- Turn off -- INSERT -- message
 vim.opt.showmode = false
--- Completion behavior
-vim.opt.completeopt = { 'menuone' ,'noinsert', 'noselect' }
-vim.g.completion_matching_strategy_list = {"exact", "substring", "fuzzy"}
 -- Add column for hints to prevent gitter
 vim.opt.signcolumn = 'yes'
 -- Highlight current line of cursor
