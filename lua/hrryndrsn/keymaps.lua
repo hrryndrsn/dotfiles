@@ -66,9 +66,16 @@ keymap('n', '<leader>pw', '<cmd>lua require(\'telescope.builtin\').grep_string()
 keymap('n', '<leader>pf', '<cmd>lua require(\'telescope.builtin\').find_files()<CR>', { noremap = true, silent = true })
 keymap('n', '<leader>pg', '<cmd>lua require(\'telescope.builtin\').git_files()<CR>', { noremap = true, silent = true })
 keymap('n', '<leader>pb', '<cmd>lua require(\'telescope.builtin\').buffers()<CR>', { noremap = true, silent = true })
-keymap('n', '<leader>vh', '<cmd>lua require(\'telescope.builtin\').help_tags()<CR>', { noremap = true, silent = true })
 keymap('n', '<leader>m', '<cmd>lua require(\'telescope.builtin\').man_pages()<CR>', { noremap = true, silent = true })
 keymap('n', '<leader>pc', '<cmd>lua require(\'telescope.builtin\').current_buffer_fuzzy_find()<CR>', { noremap = true, silent = true })
+keymap('n', '<leader>tg', '<cmd>lua require(\'telescope.builtin\').live_grep()<CR>', { noremap = true, silent = true })
+-- kenesis
+keymap('n', '<leader>th', '<cmd>lua require(\'telescope.builtin\').grep_string()<CR>', { noremap = true, silent = true })
+keymap('n', '<leader>tj', '<cmd>lua require(\'telescope.builtin\').find_files()<CR>', { noremap = true, silent = true })
+keymap('n', '<leader>tk', '<cmd>lua require(\'telescope.builtin\').git_files()<CR>', { noremap = true, silent = true })
+keymap('n', '<leader>tm', '<cmd>lua require(\'telescope.builtin\').buffers()<CR>', { noremap = true, silent = true })
+keymap('n', '<leader>t;', '<cmd>lua require(\'telescope.builtin\').help_tags()<CR>', { noremap = true, silent = true })
+keymap('n', '<leader>tl', '<cmd>lua require(\'telescope.builtin\').current_buffer_fuzzy_find()<CR>', { noremap = true, silent = true })
 -- NVIM lsp
 local opts = { noremap=true, silent=true }
 -- See `:help vim.lsp.*` for documentation on any of the below functions
