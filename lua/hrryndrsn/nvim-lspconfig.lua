@@ -34,7 +34,7 @@ end
 -- GENERAL CONFIG
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = {  'rust_analyzer', 'tsserver', 'tailwindcss', 'hls', 'bashls' }
+local servers = {  'rust_analyzer', 'tsserver', 'tailwindcss', 'hls', 'bashls', 'terraformls'}
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
@@ -178,10 +178,15 @@ vim.g.updatetime = 300
 vim.cmd [[autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()]]
 -- Enable rust type inlay hints
 -- vim.cmd [[autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *.rs :lua require'lsp_extensions'.inlay_hints{ prefix = '', highlight = "Type", only_current_line = true, enabled = {"TypeHint", "ChainingHint", "ParameterHint"} }]]
-
+-- terrformls
+vim.cmd [[autocmd BufWritePre *.tf lua vim.lsp.buf.formatting()]]
 -- Rust tools setup
 -- https://sharksforarms.dev/posts/neovim-rust/
 -- https://github.com/simrat39/rust-tools.nvim
+-- Update this path
+local extension_path = '/home/harry/.vscode/extensions/codelldb/extension/'
+local codelldb_path = extension_path .. 'adapter/codelldb'
+local liblldb_path = extension_path .. 'lldb/lib/liblldb.so'
 local opts = {
     tools = { -- rust-tools options
         autoSetHints = true,
@@ -221,6 +226,17 @@ local opts = {
             }
         }
     },
+    dap = {
+        adapter = require('rust-tools.dap').get_codelldb_adapter(
+            codelldb_path, liblldb_path)
+    }
+    -- dap = {
+    --     adapter = {
+    --         type = 'executable',
+    --         command = 'lldb-vscode-13',
+    --         name = "lldb"
+    --     }
+    -- }
 }
 
 require('rust-tools').setup(opts)
@@ -239,27 +255,37 @@ cmp.setup({
     end,
   },
   mapping = {
-    ['<C-p>'] = cmp.mapping.select_prev_item(),
-    ['<C-n>'] = cmp.mapping.select_next_item(),
-    -- Add tab support
-    ['<S-Tab>'] = cmp.mapping.select_prev_item(),
-    ['<Tab>'] = cmp.mapping.select_next_item(),
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.close(),
-    ['<CR>'] = cmp.mapping.confirm({
+    -- ['<C-p>'] = cmp.mapping.select_prev_item(),
+    -- ['<C-n>'] = cmp.mapping.select_next_item(),
+    -- -- Add tab support
+    -- ['<S-Tab>'] = cmp.mapping.select_prev_item(),
+    -- ['<Tab>'] = cmp.mapping.select_next_item(),
+    -- ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    -- ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    -- ['<C-Space>'] = cmp.mapping.complete(),
+    -- ['<C-e>'] = cmp.mapping.close(),
+    -- ['<CR>'] = cmp.mapping.confirm({
+    --   behavior = cmp.ConfirmBehavior.Insert,
+    --   select = true,
+    -- })
+    ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+    ["<C-f>"] = cmp.mapping.scroll_docs(4),
+    ["<C-e>"] = cmp.mapping.close(),
+    ["<c-y>"] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Insert,
       select = true,
-    })
+    },
+
+    ["<c-space>"] = cmp.mapping.complete(),
+
   },
 
   -- Installed sources
   sources = {
-    { name = 'nvim_lsp' },
+    { name = 'nvim_lsp', keyword_length = 3 },
     { name = 'vsnip' },
-    { name = 'path' },
-    { name = 'buffer' },
+    { name = 'path', keyword_length = 3 },
+    { name = 'buffer', keyword_length = 3 },
   },
 })
 

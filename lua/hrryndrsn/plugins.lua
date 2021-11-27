@@ -40,7 +40,10 @@ return require('packer').startup(function(use)
 
     -- To enable more of the features of rust-analyzer, such as inlay hints and more!
     use 'simrat39/rust-tools.nvim'
-
+	use {
+	  'mfussenegger/nvim-dap',
+	  requires = { {'nvim-lua/plenary.nvim'} }
+	}
     -- Snippet engine
     use 'hrsh7th/vim-vsnip'
 	--Telescope
@@ -56,10 +59,10 @@ return require('packer').startup(function(use)
     use 'jparise/vim-graphql'
     use 'mattn/emmet-vim'
     use 'cespare/vim-toml'
+    use 'jvirtanen/vim-hcl'
+    use 'hashivim/vim-terraform'
     use 'stephpy/vim-yaml'
     use 'rust-lang/rust.vim'
-    -- To enable more of the features of rust-analyzer, such as inlay hints and more!
-    use 'simrat39/rust-tools.nvim'
     -- Comments
     use 'tpope/vim-commentary'
     -- Git

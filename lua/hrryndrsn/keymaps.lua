@@ -2,9 +2,13 @@
 local keymap = vim.api.nvim_set_keymap
 -- GENERAL
 keymap('n', '<LEFT>', ':echo "Use h"<CR>', { noremap = true, silent = true })
+keymap('n', '<S-LEFT>', ':echo "Use h"<CR>', { noremap = true, silent = true })
 keymap('n', '<RIGHT>', ':echo "Use l"<CR>', { noremap = true, silent = true })
+keymap('n', '<S-RIGHT>', ':echo "Use l"<CR>', { noremap = true, silent = true })
 keymap('n', '<UP>', ':echo "Use k"<CR>', { noremap = true, silent = true })
+keymap('i', '<S-UP>', '', { noremap = true, silent = true })
 keymap('n', '<DOWN>', ':echo "Use j"<CR>', { noremap = true, silent = true })
+keymap('i', '<S-DOWN>', '', { noremap = true, silent = true })
 -- Quickscope exit and write
 keymap('n', '<ESC>', ':q<CR>', { noremap = true, silent = true })
 keymap('n', '<leader>w', ':w<CR>', { noremap = true, silent = true })

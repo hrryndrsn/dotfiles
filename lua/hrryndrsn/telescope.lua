@@ -2,6 +2,18 @@
 -- mostly defaults pulled from the docs
 local actions = require('telescope.actions')
 require('telescope').setup{
+    defaults = {
+    -- Default configuration for telescope goes here:
+    -- config_key = value,
+    mappings = {
+      i = {
+        -- map actions.which_key to <C-h> (default: <C-/>)
+        -- actions.which_key shows the mappings for your picker,
+        -- e.g. git_{create, delete, ...}_branch for the git_branches picker
+        ["<C-y>"] = actions.select_default,
+      }
+    }
+  },
   extensions = {
     fzf = {
       fuzzy = true,                    -- false will only do exact matching
