@@ -40,10 +40,7 @@ return require('packer').startup(function(use)
 
     -- To enable more of the features of rust-analyzer, such as inlay hints and more!
     use 'simrat39/rust-tools.nvim'
-	use {
-	  'mfussenegger/nvim-dap',
-	  requires = { {'nvim-lua/plenary.nvim'} }
-	}
+    use 'tomlion/vim-solidity'
     -- Snippet engine
     use 'hrsh7th/vim-vsnip'
 	--Telescope

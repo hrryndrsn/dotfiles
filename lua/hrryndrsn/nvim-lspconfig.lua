@@ -34,7 +34,7 @@ end
 -- GENERAL CONFIG
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = {  'rust_analyzer', 'tsserver', 'tailwindcss', 'hls', 'bashls', 'terraformls'}
+local servers = {  'rust_analyzer', 'tsserver', 'tailwindcss', 'hls', 'bashls', 'terraformls', 'solang'}
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
@@ -43,6 +43,7 @@ for _, lsp in ipairs(servers) do
     }
   }
 end
+
 
 -- TYPESCRIPT EXTENSIONS
 -- ESLint through null-ls
@@ -180,13 +181,9 @@ vim.cmd [[autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()]]
 -- vim.cmd [[autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *.rs :lua require'lsp_extensions'.inlay_hints{ prefix = '', highlight = "Type", only_current_line = true, enabled = {"TypeHint", "ChainingHint", "ParameterHint"} }]]
 -- terrformls
 vim.cmd [[autocmd BufWritePre *.tf lua vim.lsp.buf.formatting()]]
+vim.cmd [[autocmd BufNewFile,BufRead *.sol setfiletype solidity]]
 -- Rust tools setup
 -- https://sharksforarms.dev/posts/neovim-rust/
--- https://github.com/simrat39/rust-tools.nvim
--- Update this path
-local extension_path = '/home/harry/.vscode/extensions/codelldb/extension/'
-local codelldb_path = extension_path .. 'adapter/codelldb'
-local liblldb_path = extension_path .. 'lldb/lib/liblldb.so'
 local opts = {
     tools = { -- rust-tools options
         autoSetHints = true,
@@ -225,18 +222,7 @@ local opts = {
                 },
             }
         }
-    },
-    dap = {
-        adapter = require('rust-tools.dap').get_codelldb_adapter(
-            codelldb_path, liblldb_path)
     }
-    -- dap = {
-    --     adapter = {
-    --         type = 'executable',
-    --         command = 'lldb-vscode-13',
-    --         name = "lldb"
-    --     }
-    -- }
 }
 
 require('rust-tools').setup(opts)
