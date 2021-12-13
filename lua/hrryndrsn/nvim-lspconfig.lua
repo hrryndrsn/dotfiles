@@ -49,12 +49,13 @@ end
 -- ESLint through null-ls
 -- https://github.com/jose-elias-alvarez/nvim-lsp-ts-utils
 -- https://github.com/jose-elias-alvarez/null-ls.nvim
-require("null-ls").config({
+require("null-ls").setup({
     -- you must define at least one source for the plugin to work
-    sources = { require("null-ls").builtins.formatting.stylua }
-})
-nvim_lsp["null-ls"].setup({
-    -- see the nvim-lspconfig documentation for available configuration options
+      sources = {
+        require("null-ls").builtins.formatting.stylua,
+        require("null-ls").builtins.diagnostics.eslint,
+        require("null-ls").builtins.completion.spell,
+    },
     on_attach = on_attach
 })
 
@@ -268,10 +269,10 @@ cmp.setup({
 
   -- Installed sources
   sources = {
-    { name = 'nvim_lsp', keyword_length = 3 },
+    { name = 'nvim_lsp', keyword_length = 2 },
     { name = 'vsnip' },
-    { name = 'path', keyword_length = 3 },
-    { name = 'buffer', keyword_length = 3 },
+    { name = 'path', keyword_length = 2 },
+    { name = 'buffer', keyword_length = 2 },
   },
 })
 
