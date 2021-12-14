@@ -34,7 +34,7 @@ end
 -- GENERAL CONFIG
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = {  'rust_analyzer', 'tsserver', 'tailwindcss', 'hls', 'bashls', 'terraformls', 'solang'}
+local servers = { 'tsserver', 'tailwindcss', 'hls', 'bashls', 'terraformls', 'solang'}
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
@@ -54,7 +54,7 @@ require("null-ls").setup({
       sources = {
         require("null-ls").builtins.formatting.stylua,
         require("null-ls").builtins.diagnostics.eslint,
-        require("null-ls").builtins.completion.spell,
+        -- require("null-ls").builtins.completion.spell,
     },
     on_attach = on_attach
 })
@@ -179,54 +179,32 @@ vim.g.updatetime = 300
 -- Show diagnostic popup on cursor hover
 vim.cmd [[autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()]]
 -- Enable rust type inlay hints
--- vim.cmd [[autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *.rs :lua require'lsp_extensions'.inlay_hints{ prefix = '', highlight = "Type", only_current_line = true, enabled = {"TypeHint", "ChainingHint", "ParameterHint"} }]]
 -- terrformls
 vim.cmd [[autocmd BufWritePre *.tf lua vim.lsp.buf.formatting()]]
 vim.cmd [[autocmd BufNewFile,BufRead *.sol setfiletype solidity]]
--- Rust tools setup
--- https://sharksforarms.dev/posts/neovim-rust/
-local opts = {
-    tools = { -- rust-tools options
-        autoSetHints = true,
-        hover_with_actions = true,
-        inlay_hints = {
-            -- Only show inlay hints for the current line
-            only_current_line = true,
-            -- Event which triggers a refersh of the inlay hints.
-            -- You can make this "CursorMoved" or "CursorMoved,CursorMovedI" but
-            -- not that this may cause  higher CPU usage.
-            -- This option is only respected when only_current_line and
-            -- autoSetHints both are true.
-            only_current_line_autocmd = "CursorMoved",
-            -- wheter to show parameter hints with the inlay hints or not
-            show_parameter_hints = true,
-            parameter_hints_prefix = "",
-            other_hints_prefix = "",
-             -- The color of the hints
-            highlight = "Comment",
-        },
-    },
 
-    -- all the opts to send to nvim-lspconfig
-    -- these override the defaults set by rust-tools.nvim
-    -- see https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#rust_analyzer
-    server = {
-        -- on_attach is a callback called when the language server attachs to the buffer
-        -- on_attach = on_attach,
-        settings = {
-            -- to enable rust-analyzer settings visit:
-            -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
-            ["rust-analyzer"] = {
-                -- enable clippy on save
-                checkOnSave = {
-                    command = "clippy"
-                },
-            }
-        }
+-- Rust
+nvim_lsp.rust_analyzer.setup {
+  on_attach = on_attach,
+  settings = {
+    ["rust-analyzer"] = {
+      assist = {
+        importMergeBehavior = "last",
+        importPrefix = "by_self",
+      },
+      cargo = {
+          loadOutDirsFromCheck = true
+      },
+      procMacro = {
+          enable = true
+      },
+      -- checkOnSave = {
+      --     command = "clippy"
+      -- },
     }
+  }
 }
 
-require('rust-tools').setup(opts)
 
 -- Setup Completion
 -- See https://github.com/hrsh7th/nvim-cmp#basic-configuration
@@ -242,19 +220,6 @@ cmp.setup({
     end,
   },
   mapping = {
-    -- ['<C-p>'] = cmp.mapping.select_prev_item(),
-    -- ['<C-n>'] = cmp.mapping.select_next_item(),
-    -- -- Add tab support
-    -- ['<S-Tab>'] = cmp.mapping.select_prev_item(),
-    -- ['<Tab>'] = cmp.mapping.select_next_item(),
-    -- ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-    -- ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    -- ['<C-Space>'] = cmp.mapping.complete(),
-    -- ['<C-e>'] = cmp.mapping.close(),
-    -- ['<CR>'] = cmp.mapping.confirm({
-    --   behavior = cmp.ConfirmBehavior.Insert,
-    --   select = true,
-    -- })
     ["<C-d>"] = cmp.mapping.scroll_docs(-4),
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
     ["<C-e>"] = cmp.mapping.close(),
