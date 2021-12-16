@@ -73,6 +73,8 @@ keymap('n', '<leader>pb', '<cmd>lua require(\'telescope.builtin\').buffers()<CR>
 keymap('n', '<leader>m', '<cmd>lua require(\'telescope.builtin\').man_pages()<CR>', { noremap = true, silent = true })
 keymap('n', '<leader>pc', '<cmd>lua require(\'telescope.builtin\').current_buffer_fuzzy_find()<CR>', { noremap = true, silent = true })
 keymap('n', '<leader>tg', '<cmd>lua require(\'telescope.builtin\').live_grep()<CR>', { noremap = true, silent = true })
+keymap('n', '<leader>gl', '<cmd>lua require(\'telescope.builtin\').git_bcommits()<CR>', { noremap = true, silent = true })
+keymap('n', '<leader>gk', '<cmd>lua require(\'telescope.builtin\').git_commits()<CR>', { noremap = true, silent = true })
 -- kenesis
 keymap('n', '<leader>th', '<cmd>lua require(\'telescope.builtin\').grep_string()<CR>', { noremap = true, silent = true })
 keymap('n', '<leader>tj', '<cmd>lua require(\'telescope.builtin\').find_files()<CR>', { noremap = true, silent = true })
