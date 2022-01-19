@@ -5,6 +5,15 @@ require('telescope').setup{
     defaults = {
     -- Default configuration for telescope goes here:
     -- config_key = value,
+    sorting_strategy = "ascending",
+    winblend = 30,
+    layout_config = {
+        horizontal = {
+            prompt_position = "top",
+            width = 0.95,
+            height = 0.95
+        }
+    },
     mappings = {
       i = {
         -- map actions.which_key to <C-h> (default: <C-/>)

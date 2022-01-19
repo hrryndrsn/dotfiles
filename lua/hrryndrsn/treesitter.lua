@@ -24,5 +24,3 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 
--- Comments
-require('Comment').setup()

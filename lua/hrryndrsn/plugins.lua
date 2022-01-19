@@ -11,21 +11,7 @@ return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
 	-- Colorscheme & Aeisthetics
 	use 'chriskempson/base16-vim'
-	use 'tjdevries/colorbuddy.vim'
-	use 'tjdevries/gruvbuddy.nvim'
     use 'itchyny/lightline.vim'
-    use 'morhetz/gruvbox'
-    use {
-        "mcchrish/zenbones.nvim",
-        -- Optionally install Lush. Allows for more configuration or extending the colorscheme
-        -- If you don't want to install lush, make sure to set g:zenbones_compat = 1
-        -- In Vim, compat mode is turned on as Lush only works in Neovim.
-        requires = "rktjmp/lush.nvim"
-    }
-    use "projekt0n/github-nvim-theme"
-    use "antonk52/lake.vim"
-    use "cocopon/iceberg.vim"
-    use 'jacoborus/tender.vim'
 
 	-- LSP
 	use 'neovim/nvim-lspconfig'
@@ -51,9 +37,6 @@ return require('packer').startup(function(use)
     use 'hrsh7th/cmp-path'
     use 'hrsh7th/cmp-buffer'
     -- See hrsh7th's other plugins for more completion sources!
-
-    -- For Packer
-    use 'EdenEast/nightfox.nvim'
 
     -- To enable more of the features of rust-analyzer, such as inlay hints and more!
     use 'simrat39/rust-tools.nvim'

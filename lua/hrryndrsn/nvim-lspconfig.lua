@@ -351,3 +351,6 @@ cmp.setup({
   },
 })
 
+
+-- Comments
+require('Comment').setup()
