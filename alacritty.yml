@@ -1,8 +1,8 @@
 # Configuration for Alacritty, the GPU enhanced terminal emulator.
 
-window:
-  decorations: none
-  startup_mode: Maximized
+# window:
+#   decorations: none
+#   startup_mode: Maximized
 # Import additional configuration files
 #
 # Imports are loaded in order, skipping all missing files, with the importing
