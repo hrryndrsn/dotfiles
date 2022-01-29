@@ -314,7 +314,7 @@ vim.cmd [[autocmd BufNewFile,BufRead *.sol setfiletype solidity]]
       },
     },
   }
-
+ --
 
 -- Setup Completion
 -- See https://github.com/hrsh7th/nvim-cmp#basic-configuration
@@ -354,3 +354,4 @@ cmp.setup({
 
 -- Comments
 require('Comment').setup()
+

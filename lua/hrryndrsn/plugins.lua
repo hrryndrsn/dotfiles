@@ -22,33 +22,30 @@ return require('packer').startup(function(use)
         'jose-elias-alvarez/null-ls.nvim',
 	    requires = { {'nvim-lua/plenary.nvim'} }
     }
+    use 'nvim-treesitter/nvim-treesitter'
+
     -- Completion framework
     use 'hrsh7th/nvim-cmp'
-
     -- LSP completion source for nvim-cmp
     use 'hrsh7th/cmp-nvim-lsp'
-
-    -- Treesitter
-    use 'nvim-treesitter/nvim-treesitter'
-    -- Snippet completion source for nvim-cmp
     use 'hrsh7th/cmp-vsnip'
-
-    -- Other usefull completion sources
     use 'hrsh7th/cmp-path'
     use 'hrsh7th/cmp-buffer'
-    -- See hrsh7th's other plugins for more completion sources!
-
-    -- To enable more of the features of rust-analyzer, such as inlay hints and more!
-    use 'simrat39/rust-tools.nvim'
-    use 'tomlion/vim-solidity'
     -- Snippet engine
     use 'hrsh7th/vim-vsnip'
+    use 'hrsh7th/vim-vsnip-integ'
+
+    -- Lang tools
+    use 'simrat39/rust-tools.nvim'
+    use 'tomlion/vim-solidity'
+
 	--Telescope
 	use {
 	  'nvim-telescope/telescope.nvim',
 	  requires = { {'nvim-lua/plenary.nvim'} }
 	}
     use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+
     -- Lang plugins
     use 'pangloss/vim-javascript'
     use 'leafgarland/typescript-vim'
@@ -60,6 +57,7 @@ return require('packer').startup(function(use)
     use 'hashivim/vim-terraform'
     use 'stephpy/vim-yaml'
     use 'rust-lang/rust.vim'
+
     -- Comments
     -- use 'tpope/vim-commentary'
     use 'numToStr/Comment.nvim'
