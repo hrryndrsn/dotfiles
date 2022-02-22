@@ -68,4 +68,8 @@ return require('packer').startup(function(use)
     use 'sbdchd/neoformat'
     -- Misc
     use 'ThePrimeagen/vim-be-good'
+	use {
+	  'ThePrimeagen/harpoon',
+	  requires = { {'nvim-lua/plenary.nvim'} }
+	}
 end)

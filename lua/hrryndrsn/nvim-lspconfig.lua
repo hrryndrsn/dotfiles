@@ -310,6 +310,9 @@ vim.cmd [[autocmd BufNewFile,BufRead *.sol setfiletype solidity]]
           procMacro = {
             enable = true,
           },
+          checkOnSave = {
+            command = "clippy"
+          },
         },
       },
     },
