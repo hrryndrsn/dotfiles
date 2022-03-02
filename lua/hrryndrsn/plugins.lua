@@ -59,7 +59,6 @@ return require('packer').startup(function(use)
     use 'rust-lang/rust.vim'
 
     -- Comments
-    -- use 'tpope/vim-commentary'
     use 'numToStr/Comment.nvim'
 
     -- Git
