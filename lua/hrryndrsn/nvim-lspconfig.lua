@@ -209,7 +209,24 @@ vim.cmd [[autocmd BufNewFile,BufRead *.sol setfiletype solidity]]
 -- }
 
 -- Advanced
- require('rust-tools').setup {
+require('rust-tools').setup {
+    tools = {
+    -- Automatically set inlay hints (type hints)
+    autoSetHints = true,
+    inlay_hints = {
+
+          -- Only show inlay hints for the current line
+          only_current_line = true,
+
+          -- Event which triggers a refersh of the inlay hints.
+          -- You can make this "CursorMoved" or "CursorMoved,CursorMovedI" but
+          -- not that this may cause  higher CPU usage.
+          -- This option is only respected when only_current_line and
+          -- autoSetHints both are true.
+          only_current_line_autocmd = "CursorMoved,CursorMovedI",
+      },
+    },
+
     -- all the opts to send to nvim-lspconfig
     -- these override the defaults set by rust-tools.nvim
     -- see https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#rust_analyzer
@@ -221,7 +238,6 @@ vim.cmd [[autocmd BufNewFile,BufRead *.sol setfiletype solidity]]
       flags = {
         debounce_text_changes = false,
       },
-
       settings = {
         ["rust-analyzer"] = {
           assist = {
@@ -243,7 +259,7 @@ vim.cmd [[autocmd BufNewFile,BufRead *.sol setfiletype solidity]]
         },
       },
     },
-  }
+}
  --
 
 -- Setup Completion
