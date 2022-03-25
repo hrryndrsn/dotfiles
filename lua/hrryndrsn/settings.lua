@@ -66,6 +66,10 @@ vim.opt.cursorline = true
 --vim.opt.clipboard = 'unnamedplus'
 -- Wrappring settings
 vim.opt.wrap = false
+--global status line
+vim.opt.laststatus = 3
+-- vim.highlight.create('WinSeparator', {guibg=None}, false)
+vim.cmd[[autocmd VimEnter * highlight WinSeparator guibg=None]]
 -- Filetype detection
 vim.cmd('filetype plugin indent on')
 
@@ -78,6 +82,7 @@ vim.g.rustfmt_autosave = 1
 vim.g.lightline = { colorscheme = 'powerline' }
 -- Emmet
 vim.g.user_emmet_mode = 'n'
+vim.g.snippets = 'luasnip'
 vim.g.user_emmet_leader_key = ','
 vim.g.user_emmet_settings = {
     typescript = {
