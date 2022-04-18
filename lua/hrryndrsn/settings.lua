@@ -82,7 +82,6 @@ vim.g.rustfmt_autosave = 1
 vim.g.lightline = { colorscheme = 'powerline' }
 -- Emmet
 vim.g.user_emmet_mode = 'n'
-vim.g.snippets = 'luasnip'
 vim.g.user_emmet_leader_key = ','
 vim.g.user_emmet_settings = {
     typescript = {

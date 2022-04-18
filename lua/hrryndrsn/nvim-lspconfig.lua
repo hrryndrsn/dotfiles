@@ -1,5 +1,6 @@
 local nvim_lsp = require('lspconfig')
-local luasnip = require('luasnip')
+-- cmp
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -37,9 +38,10 @@ end
 -- GENERAL CONFIG
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'tsserver', 'tailwindcss', 'hls', 'bashls', 'terraformls', 'solang'}
+local servers = { 'tsserver', 'tailwindcss', 'hls', 'bashls', 'terraformls', 'solang', 'gopls'}
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
+    capabilities = capabilities,
     on_attach = on_attach,
     flags = {
       debounce_text_changes = 150,
@@ -59,6 +61,7 @@ require("null-ls").setup({
         require("null-ls").builtins.diagnostics.eslint,
         -- require("null-ls").builtins.completion.spell,
     },
+    capabilities = capabilities,
     on_attach = on_attach
 })
 
@@ -81,6 +84,7 @@ end
 
 require'lspconfig'.sumneko_lua.setup {
     on_attach = on_attach,
+    capabilities = capabilities,
     cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
     settings = {
         Lua = {
@@ -105,6 +109,7 @@ require'lspconfig'.sumneko_lua.setup {
 -- YAML
 nvim_lsp.yamlls.setup {
     on_attach = on_attach,
+    capabilities = capabilities,
     flags = {
       debounce_text_changes = 150,
     },
@@ -188,107 +193,99 @@ vim.cmd [[autocmd BufNewFile,BufRead *.sol setfiletype solidity]]
 
 -- Rust
 -- Simple
--- nvim_lsp.rust_analyzer.setup {
---   on_attach = on_attach,
---   settings = {
---     ["rust-analyzer"] = {
---       assist = {
---         importMergeBehavior = "last",
---         importPrefix = "by_self",
---       },
---       cargo = {
---           loadOutDirsFromCheck = true
---       },
---       procMacro = {
---           enable = true
---       },
-      -- checkOnSave = {
-      --     command = "clippy"
-      -- },
---     }
---   }
--- }
+nvim_lsp.rust_analyzer.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  settings = {
+    ["rust-analyzer"] = {
+      assist = {
+        importMergeBehavior = "last",
+        importPrefix = "by_self",
+      },
+      cargo = {
+          loadOutDirsFromCheck = true
+      },
+      procMacro = {
+          enable = true
+      },
+      checkOnSave = {
+          command = "clippy"
+      },
+    }
+  }
+}
 
 -- Advanced
-require('rust-tools').setup {
-    tools = {
-    -- Automatically set inlay hints (type hints)
-    autoSetHints = true,
-    inlay_hints = {
-
-          -- Only show inlay hints for the current line
-          only_current_line = true,
-
-          -- Event which triggers a refersh of the inlay hints.
-          -- You can make this "CursorMoved" or "CursorMoved,CursorMovedI" but
-          -- not that this may cause  higher CPU usage.
-          -- This option is only respected when only_current_line and
-          -- autoSetHints both are true.
-          only_current_line_autocmd = "CursorMoved,CursorMovedI",
-      },
-    },
-
-    -- all the opts to send to nvim-lspconfig
-    -- these override the defaults set by rust-tools.nvim
-    -- see https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#rust_analyzer
-    server = {
-      -- capabilities = lsp.capabilities,
-      -- on_init = lsp.on_init,
-      on_attach = on_attach,
-
-      flags = {
-        debounce_text_changes = false,
-      },
-      settings = {
-        ["rust-analyzer"] = {
-          assist = {
-            importGranularity = "module",
-            importPrefix = "by_self",
-          },
-          cargo = {
-            loadOutDirsFromCheck = true,
-          },
-          procMacro = {
-            enable = true,
-          },
-          ["rust-analyzer"] = {
-              -- enable clippy on save
-              checkOnSave = {
-                  command = "clippy"
-              },
-           },
-        },
-      },
-    },
-}
- --
+-- require('rust-tools').setup {
+--  tools = {
+--      inlay_hints = {
+--     --
+--     --       -- Only show inlay hints for the current line
+--             -- only_current_line = true,
+--     --
+--     --       -- Event which triggers a refersh of the inlay hints.
+--     --       -- You can make this "CursorMoved" or "CursorMoved,CursorMovedI" but
+--     --       -- not that this may cause  higher CPU usage.
+--     --       -- This option is only respected when only_current_line and
+--     --       -- autoSetHints both are true.
+--     --       -- only_current_line_autocmd = "CursorMoved,CursorMovedI",
+--        },
+--     },
+--
+--     -- all the opts to send to nvim-lspconfig
+--     -- these override the defaults set by rust-tools.nvim
+--     -- see https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#rust_analyzer
+--     server = {
+--       -- capabilities = lsp.capabilities,
+--       -- on_init = lsp.on_init,
+--       on_attach = on_attach,
+--
+--       flags = {
+--         debounce_text_changes = false,
+--       },
+--       settings = {
+--         ["rust-analyzer"] = {
+--           assist = {
+--             importGranularity = "module",
+--             importPrefix = "by_self",
+--           },
+--           cargo = {
+--             loadOutDirsFromCheck = true,
+--           },
+--           procMacro = {
+--             enable = true,
+--           },
+--           -- ["rust-analyzer"] = {
+--               -- enable clippy on save
+--               -- checkOnSave = {
+--               --     command = "clippy"
+--               -- },
+--            -- },
+--         },
+--       },
+--     },
+-- }
+--  --
 -- Setup Completion
 -- See https://github.com/hrsh7th/nvim-cmp#basic-configuration
 -- Completion behavior
 vim.opt.completeopt = { 'menuone' ,'noinsert', 'noselect' }
 vim.g.completion_matching_strategy_list = {"exact", "substring", "fuzzy"}
-local cmp = require'cmp'
 local has_words_before = function()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
-cmp.setup({
-  -- Enable LSP snippets
-   snippet = {
-      expand = function(args)
-        require'luasnip'.lsp_expand(args.body)
-      end
-    },
-  mapping = {
-    ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-    ["<C-f>"] = cmp.mapping.scroll_docs(4),
-    ["<C-e>"] = cmp.mapping.close(),
-    ["<c-y>"] = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Insert,
-      select = true,
-    },
+local luasnip = require("luasnip")
+local cmp = require'cmp'
 
-    ["<Tab>"] = cmp.mapping(function(fallback)
+cmp.setup({
+  snippet = {
+      expand = function(args)
+        require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+      end,
+  },
+  mapping = cmp.mapping.preset.insert({
+     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
       elseif luasnip.expand_or_jumpable() then
@@ -309,19 +306,55 @@ cmp.setup({
         fallback()
       end
     end, { "i", "s" }),
-
-
-  },
+    ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+    ["<C-f>"] = cmp.mapping.scroll_docs(4),
+    ["<C-e>"] = cmp.mapping.close(),
+    ["<c-y>"] = cmp.mapping.confirm {
+      behavior = cmp.ConfirmBehavior.Insert,
+      select = true,
+    },
+  }),
 
   -- Installed sources
-  sources = {
+  sources = cmp.config.sources({
     { name = 'nvim_lsp', keyword_length = 2 },
      { name = 'luasnip', options = { use_show_condition = false } },
     { name = 'path', keyword_length = 2 },
     { name = 'buffer', keyword_length = 2 },
-  },
+  }),
 })
 
 
 -- Comments
 require('Comment').setup()
+
+
+--Luasnip
+local ls = require("luasnip")
+local t = ls.text_node
+local s = ls.snippet
+local i = ls.insert_node
+local f = ls.function_node
+        
+-- args is a table, where 1 is the text in Placeholder 1, 2 the text in
+-- placeholder 2,...
+local function copy(args)
+	return args[1]
+end
+
+
+ls.add_snippets("all", {
+    -- trigger is `fn`, second argument to snippet-constructor are the nodes to insert into the buffer on expansion.
+    s( "p1", {
+    -- Simple static text.
+		t('println!("{}", '), i(1), t(");")
+    }
+    ),
+    s( "p2", {
+    -- Simple static text.
+		t('println!("{} {}", '), i(1), t(", ") ,i(2), t(");")
+    }
+    ),
+})
+
+
