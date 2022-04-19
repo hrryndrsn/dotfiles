@@ -335,6 +335,8 @@ local t = ls.text_node
 local s = ls.snippet
 local i = ls.insert_node
 local f = ls.function_node
+local fmt = require("luasnip.extras.fmt").fmt
+
         
 -- args is a table, where 1 is the text in Placeholder 1, 2 the text in
 -- placeholder 2,...
@@ -345,16 +347,22 @@ end
 
 ls.add_snippets("all", {
     -- trigger is `fn`, second argument to snippet-constructor are the nodes to insert into the buffer on expansion.
-    s( "p1", {
-    -- Simple static text.
-		t('println!("{}", '), i(1), t(");")
-    }
-    ),
+    s(
+    "p1",
+    fmt('println!("{} {{}}", {})', {
+        i(1),
+        i(2)
+    })
+	),
     s( "p2", {
     -- Simple static text.
 		t('println!("{} {}", '), i(1), t(", ") ,i(2), t(");")
     }
     ),
 })
+
+require("luasnip.loaders.from_vscode").lazy_load()
+
+
 
 
