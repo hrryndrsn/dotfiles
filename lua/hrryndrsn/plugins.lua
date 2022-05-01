@@ -11,7 +11,12 @@ return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
 	-- Colorscheme & Aeisthetics
 	use 'chriskempson/base16-vim'
+    use 'romainl/Apprentice'
+    use 'hardselius/warlock'
+    use 'morhetz/gruvbox'
     use 'itchyny/lightline.vim'
+    use 'andreasvc/vim-256noir'
+    use 'gko/vim-coloresque'
     use {
     "mcchrish/zenbones.nvim",
     -- Optionally install Lush. Allows for more configuration or extending the colorscheme
@@ -19,6 +24,10 @@ return require('packer').startup(function(use)
     -- In Vim, compat mode is turned on as Lush only works in Neovim.
     requires = "rktjmp/lush.nvim"
     }
+    use 'huyvohcmc/atlas.vim'
+    use 'lurst/austere.vim'
+    use 'tjdevries/colorbuddy.nvim'
+    use 'tjdevries/gruvbuddy.nvim'
 
 	-- LSP
 	use 'neovim/nvim-lspconfig'
@@ -30,6 +39,7 @@ return require('packer').startup(function(use)
 	    requires = { {'nvim-lua/plenary.nvim'} }
     }
     use 'nvim-treesitter/nvim-treesitter'
+
 
     -- Completion framework
     use 'hrsh7th/nvim-cmp'
@@ -78,4 +88,5 @@ return require('packer').startup(function(use)
 	  'ThePrimeagen/harpoon',
 	  requires = { {'nvim-lua/plenary.nvim'} }
 	}
+    use 'machakann/vim-highlightedyank'
 end)

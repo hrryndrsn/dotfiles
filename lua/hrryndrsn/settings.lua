@@ -79,7 +79,7 @@ vim.g.mapleader = ' '
 -- Rust format on save
 vim.g.rustfmt_autosave = 1
 -- Lightline theme
-vim.g.lightline = { colorscheme = 'powerline' }
+-- vim.g.lightline = { colorscheme = 'powerline' }
 -- Emmet
 vim.g.user_emmet_mode = 'n'
 vim.g.user_emmet_leader_key = ','
