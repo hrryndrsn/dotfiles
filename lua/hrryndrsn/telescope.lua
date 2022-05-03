@@ -6,7 +6,7 @@ require('telescope').setup{
     -- Default configuration for telescope goes here:
     -- config_key = value,
     sorting_strategy = "ascending",
-    winblend = 30,
+    -- winblend = 30,
     layout_config = {
         horizontal = {
             prompt_position = "top",
