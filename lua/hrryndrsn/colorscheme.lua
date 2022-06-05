@@ -3,6 +3,8 @@
 -- vim.cmd [[colorscheme base16-gruvbox-dark-hard]]
 -- vim.cmd [[colorscheme austere]]
 require('colorbuddy').colorscheme('hrryndrsn.zord')
+
+
 -- require('colorbuddy').colorscheme('hrryndrsn.nordic')
 
 -- vim.g.gruvbox_contrast_dark = "hard"

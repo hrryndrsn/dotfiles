@@ -101,7 +101,7 @@ keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
 keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
 keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
 keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
 keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 -- Harpoon
 keymap('n', '<space>ha', '<cmd>lua require("harpoon.mark").add_file()<CR>', opts)
@@ -112,4 +112,18 @@ keymap('n', '<space>h1', '<cmd>lua require("harpoon.ui").nav_file(1)<CR>', opts)
 keymap('n', '<space>h2', '<cmd>lua require("harpoon.ui").nav_file(2)<CR>', opts)
 keymap('n', '<space>h3', '<cmd>lua require("harpoon.ui").nav_file(3)<CR>', opts)
 keymap('n', '<space>h4', '<cmd>lua require("harpoon.ui").nav_file(4)<CR>', opts)
+
+keymap('n', '<space>sn', '<cmd>:PackerSync<CR>', opts)
+
+-- DEBUG
+keymap('n', '<F5>', '<Cmd>lua require("dap").continue()<CR>', opts)
+keymap('n', '<F10>', '<Cmd>lua require("dap").step_over()<CR>', opts)
+keymap('n', '<F11>', '<Cmd>lua require("dap").step_into()<CR>', opts)
+keymap('n', '<F12>', '<Cmd>lua require("dap").step_out()<CR>', opts)
+keymap('n', '<Leader>b', '<Cmd>lua require("dap").toggle_breakpoint()<CR>', opts)
+keymap('n', '<Leader>B', '<Cmd>lua require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))<CR>', opts)
+keymap('n', '<Leader>lp', '<Cmd>lua require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))<CR>', opts)
+keymap('n', '<Leader>dr', '<Cmd>lua require("dap").repl.open()<CR>', opts)
+keymap('n', '<Leader>dl', '<Cmd>lua require("dap").run_last()<CR>', opts)
+
 

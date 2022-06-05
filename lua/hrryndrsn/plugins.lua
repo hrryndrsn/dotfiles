@@ -14,7 +14,6 @@ return require('packer').startup(function(use)
     use 'romainl/Apprentice'
     use 'hardselius/warlock'
     use 'morhetz/gruvbox'
-    use 'itchyny/lightline.vim'
     use 'andreasvc/vim-256noir'
     use 'gko/vim-coloresque'
     use {
@@ -39,6 +38,8 @@ return require('packer').startup(function(use)
 	    requires = { {'nvim-lua/plenary.nvim'} }
     }
     use 'nvim-treesitter/nvim-treesitter'
+    -- use 'ziglang/zig.vim'
+
 
 
     -- Completion framework
@@ -53,8 +54,12 @@ return require('packer').startup(function(use)
     use "rafamadriz/friendly-snippets"
 
     -- Lang tools
-    use 'simrat39/rust-tools.nvim'
     use 'tomlion/vim-solidity'
+
+
+    --Debugger
+    use 'mfussenegger/nvim-dap'
+    use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
 
 	--Telescope
 	use {

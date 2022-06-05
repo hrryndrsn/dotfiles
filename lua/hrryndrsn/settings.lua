@@ -3,7 +3,7 @@
 -- Syntax highlighting on
 vim.opt.syntax = 'on'
 -- Disable the default Vim startup message.
-vim.opt.shortmess:append({ I = true })
+-- vim.opt.shortmess:append({ I = true })
  -- Line numbers
 vim.opt.number = true
 -- Relative line numbers to cursor position
@@ -63,11 +63,14 @@ vim.opt.cursorline = true
 -- Clipboard settings
 -- ALWAYS use the clipboard for ALL operations (instead of interacting with
 --the '+' and/or '*' registers explicitly)
---vim.opt.clipboard = 'unnamedplus'
+-- vim.opt.clipboard = 'unnamedplus'
 -- Wrappring settings
 vim.opt.wrap = false
 --global status line
 vim.opt.laststatus = 3
+vim.o.winbar = "%f"
+
+vim.cmd('filetype plugin indent on')
 -- vim.highlight.create('WinSeparator', {guibg=None}, false)
 vim.cmd[[autocmd VimEnter * highlight WinSeparator guibg=None]]
 -- Filetype detection

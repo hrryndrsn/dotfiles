@@ -38,7 +38,7 @@ end
 -- GENERAL CONFIG
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'tsserver', 'tailwindcss', 'hls', 'bashls', 'terraformls', 'solang', 'gopls'}
+local servers = { 'tsserver', 'tailwindcss', 'hls', 'bashls', 'terraformls', 'solc', 'gopls'}
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     capabilities = capabilities,
@@ -193,78 +193,44 @@ vim.cmd [[autocmd BufNewFile,BufRead *.sol setfiletype solidity]]
 
 -- Rust
 -- Simple
+-- nvim_lsp.rust_analyzer.setup{}
 nvim_lsp.rust_analyzer.setup {
   on_attach = on_attach,
   capabilities = capabilities,
-  settings = {
-    ["rust-analyzer"] = {
-      assist = {
-        importMergeBehavior = "last",
-        importPrefix = "by_self",
-      },
-      cargo = {
-          loadOutDirsFromCheck = true
-      },
-      procMacro = {
-          enable = true
-      },
-      -- checkOnSave = {
-      --     command = "clippy"
-      -- },
-    }
-  }
+  -- settings = {
+  --   ["rust-analyzer"] = {
+  --     checkOnSave = {
+  --         command = "clippy"
+  --     },
+  --   }
+  -- }
 }
 
 -- Advanced
--- require('rust-tools').setup {
---  tools = {
---      inlay_hints = {
---     --
---     --       -- Only show inlay hints for the current line
---             -- only_current_line = true,
---     --
---     --       -- Event which triggers a refersh of the inlay hints.
---     --       -- You can make this "CursorMoved" or "CursorMoved,CursorMovedI" but
---     --       -- not that this may cause  higher CPU usage.
---     --       -- This option is only respected when only_current_line and
---     --       -- autoSetHints both are true.
---     --       -- only_current_line_autocmd = "CursorMoved,CursorMovedI",
---        },
+-- require('rust-tools').setup({
+--     tools = {
+--         autoSetHints = false,
 --     },
---
---     -- all the opts to send to nvim-lspconfig
---     -- these override the defaults set by rust-tools.nvim
---     -- see https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#rust_analyzer
 --     server = {
---       -- capabilities = lsp.capabilities,
---       -- on_init = lsp.on_init,
---       on_attach = on_attach,
---
---       flags = {
---         debounce_text_changes = false,
---       },
---       settings = {
---         ["rust-analyzer"] = {
---           assist = {
---             importGranularity = "module",
---             importPrefix = "by_self",
---           },
---           cargo = {
---             loadOutDirsFromCheck = true,
---           },
---           procMacro = {
---             enable = true,
---           },
---           -- ["rust-analyzer"] = {
---               -- enable clippy on save
---               -- checkOnSave = {
---               --     command = "clippy"
---               -- },
---            -- },
---         },
---       },
+--         -- on_attach is a callback called when the language server attachs to the buffer
+--         -- on_attach = on_attach,
+--         settings = {
+--             -- to enable rust-analyzer settings visit:
+--             -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
+--             ["rust-analyzer"] = {
+--                 -- enable clippy on save
+--                 checkOnSave = {
+--                     command = "clippy"
+--                 },
+--             }
+--         }
 --     },
--- }
+-- })
+--
+--
+-- ZIG
+nvim_lsp.zls.setup({})
+
 --  --
 -- Setup Completion
 -- See https://github.com/hrsh7th/nvim-cmp#basic-configuration

@@ -25,8 +25,8 @@ Color.new('background3',  '#0D0D0D')
 --
 
 Group.new('Normal', colors.white, colors.background2)
-Group.new('Number', colors.green)
-Group.new('Boolean', colors.green)
+Group.new('Number', colors.orange)
+Group.new('Boolean', colors.orange)
 Group.new('Function', colors.blue)
 Group.new('Statement', colors.violet)
 Group.new('Conditional', colors.violet)
@@ -39,4 +39,5 @@ Group.new('Repeat', colors.violet)
 Group.new('Identifier', colors.white)
 Group.new('Special', colors.white)
 Group.new('Operator', colors.violet)
+Group.new('StatusLine', colors.gray3, colors.gray1)
 
