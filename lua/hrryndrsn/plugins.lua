@@ -60,6 +60,8 @@ return require('packer').startup(function(use)
     --Debugger
     use 'mfussenegger/nvim-dap'
     use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+    use 'nvim-telescope/telescope-dap.nvim'
+    use 'theHamsta/nvim-dap-virtual-text'
 
 	--Telescope
 	use {

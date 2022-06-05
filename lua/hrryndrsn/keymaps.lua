@@ -84,6 +84,10 @@ keymap('n', '<leader>tk', '<cmd>lua require(\'telescope.builtin\').git_files()<C
 keymap('n', '<leader>tm', '<cmd>lua require(\'telescope.builtin\').buffers()<CR>', opts)
 keymap('n', '<leader>t;', '<cmd>lua require(\'telescope.builtin\').help_tags()<CR>', opts)
 keymap('n', '<leader>tl', '<cmd>lua require(\'telescope.builtin\').current_buffer_fuzzy_find()<CR>', opts)
+-- for debugger
+keymap('n', '<Leader>tp', '<Cmd>:Telescope dap list_breakpoints<CR>', opts)
+keymap('n', '<Leader>tc', '<Cmd>:Telescope dap commands<CR>', opts)
+
 -- NVIM lsp
 -- See `:help vim.lsp.*` for documentation on any of the below functions
 keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
@@ -125,5 +129,6 @@ keymap('n', '<Leader>B', '<Cmd>lua require("dap").set_breakpoint(vim.fn.input("B
 keymap('n', '<Leader>lp', '<Cmd>lua require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))<CR>', opts)
 keymap('n', '<Leader>dr', '<Cmd>lua require("dap").repl.open()<CR>', opts)
 keymap('n', '<Leader>dl', '<Cmd>lua require("dap").run_last()<CR>', opts)
+keymap('n', '<Leader>dc', '<Cmd>lua require("dapui").close()<CR>', opts)
 
 
