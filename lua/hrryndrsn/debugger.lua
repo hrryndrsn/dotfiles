@@ -66,6 +66,7 @@ dap.configurations.rust = {
     end,
     cwd = '${workspaceFolder}',
     stopOnEntry = true,
+    sourceLanguages = {"rust"},
   },
 }
 
