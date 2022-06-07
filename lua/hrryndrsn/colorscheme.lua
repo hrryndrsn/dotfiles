@@ -1,10 +1,9 @@
 -- --Colorscheme
 --
--- vim.cmd [[colorscheme base16-gruvbox-dark-hard]]
--- vim.cmd [[colorscheme austere]]
-require('colorbuddy').colorscheme('hrryndrsn.zord')
+-- require('colorbuddy').colorscheme('hrryndrsn.zord')
 
 
+-- Lua
 -- require('colorbuddy').colorscheme('hrryndrsn.nordic')
 
 -- vim.g.gruvbox_contrast_dark = "hard"
@@ -34,3 +33,23 @@ require('colorbuddy').colorscheme('hrryndrsn.zord')
 -- require("github-theme").setup({
 --   theme_style = "dark",
 -- })
+--
+-- github theme
+-- https://github.com/projekt0n/github-nvim-theme
+require("github-theme").setup({
+  theme_style = "dark_colorblind",
+  colors = {syntax = { variable = "#c9d1d9"}},
+
+  -- Overwrite the highlight groups
+  overrides = function(c)
+    return {
+      -- htmlTag = {fg = c.red, bg = "#282c34", sp = c.hint, style = "underline"},
+      StatusLine = {link = "Comment"},
+      TSSymbol = {link = "Normal"},
+      Search = {link = "TSNote"},
+      -- this will remove the highlight groups
+      -- TSField = {},
+    }
+  end
+})
+

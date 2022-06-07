@@ -71,39 +71,40 @@ vim.opt.laststatus = 3
 
 local function status_line()
   local mode = "%-5{%v:lua.string.upper(v:lua.vim.fn.mode())%}"
-  local buf_nr = "[%n] "
 
   local modified = " %-m"
   local right_align = "%="
-  local line_no = "%10([%l/%L%)]"
-  local pct_thru_file = "%5p%%"
+  local line_no = "%10([%l/%L%)] "
   local file_type = "%y"
   local file_name = "%f"
 
   return string.format(
-    "%s%s%s%s%s%s%s%s",
+    "%s%s%s%s%s%s",
     mode,
     file_name,
     modified,
     right_align,
-    buf_nr,
     file_type,
-    line_no,
-    pct_thru_file
+    line_no
   )
 end
+
 vim.opt.statusline = status_line()
 
 local function win_bar()
   local mode = "%-5{%v:lua.string.upper(v:lua.vim.fn.mode())%}"
   local file_name = "%f"
   local modified = " %m"
+  local right_align = "%="
+  local buf_nr = "[%n] "
 
   return string.format(
-    "%s%s%s",
+    "%s%s%s%s%s",
     mode,
     file_name,
-    modified
+    modified,
+    right_align,
+    buf_nr
   )
 end
 

@@ -27,6 +27,8 @@ return require('packer').startup(function(use)
     use 'lurst/austere.vim'
     use 'tjdevries/colorbuddy.nvim'
     use 'tjdevries/gruvbuddy.nvim'
+    use "projekt0n/github-nvim-theme"
+
 
 	-- LSP
 	use 'neovim/nvim-lspconfig'
