@@ -38,12 +38,11 @@
 -- https://github.com/projekt0n/github-nvim-theme
 require("github-theme").setup({
   theme_style = "dark_colorblind",
-  colors = {syntax = { variable = "#c9d1d9"}},
+  colors = { syntax = { variable = "#c9d1d9"} },
 
   -- Overwrite the highlight groups
   overrides = function(c)
     return {
-      -- htmlTag = {fg = c.red, bg = "#282c34", sp = c.hint, style = "underline"},
       StatusLine = {link = "Comment"},
       TSSymbol = {link = "Normal"},
       Search = {link = "TSNote"},

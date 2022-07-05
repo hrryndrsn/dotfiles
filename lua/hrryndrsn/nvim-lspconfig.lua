@@ -1,3 +1,6 @@
+-- DEBUG
+-- vim.lsp.set_log_level("debug")
+
 local nvim_lsp = require('lspconfig')
 -- cmp
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -38,7 +41,7 @@ end
 -- GENERAL CONFIG
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'tsserver', 'tailwindcss', 'hls', 'bashls', 'terraformls', 'solc', 'gopls'}
+local servers = { 'tsserver', 'tailwindcss', 'hls', 'bashls', 'terraformls', 'solc', 'gopls', 'dockerls', 'cssls', 'jsonls'}
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     capabilities = capabilities,
@@ -54,16 +57,16 @@ end
 -- ESLint through null-ls
 -- https://github.com/jose-elias-alvarez/nvim-lsp-ts-utils
 -- https://github.com/jose-elias-alvarez/null-ls.nvim
-require("null-ls").setup({
-    -- you must define at least one source for the plugin to work
-      sources = {
-        require("null-ls").builtins.formatting.stylua,
-        require("null-ls").builtins.diagnostics.eslint,
-        -- require("null-ls").builtins.completion.spell,
-    },
-    capabilities = capabilities,
-    on_attach = on_attach
-})
+-- require("null-ls").setup({
+--     -- you must define at least one source for the plugin to work
+--       sources = {
+--         require("null-ls").builtins.formatting.stylua,
+--         require("null-ls").builtins.diagnostics.eslint,
+--         -- require("null-ls").builtins.completion.spell,
+--     },
+--     capabilities = capabilities,
+--     on_attach = on_attach
+-- })
 
 -- LUA
 -- https://github.com/sumneko/lua-language-server/wiki/Build-and-Run-(Standalone)
@@ -114,7 +117,29 @@ nvim_lsp.yamlls.setup {
       debounce_text_changes = 150,
     },
     settings = {
-        yaml = {
+            yaml = {
+              trace = {
+                server = "verbose"
+              },
+              -- schemaStore = {
+              --     url = "https://www.schemastore.org/api/json/catalog.json",
+              --     enable = true,
+              --   },
+            schemas = {
+                -- cloudformation
+               -- ["https://raw.githubusercontent.com/awslabs/goformation/master/schema/cloudformation.schema.json"] = "/*",
+               -- ["https://raw.githubusercontent.com/awslabs/goformation/master/schema/sam.schema.json"] = "/*",
+               -- kubernetes
+               -- ["https://kubernetesjsonschema.dev/v1.14.0/deployment-apps-v1.json"] = "/*",
+               -- ["https://kubernetesjsonschema.dev/v1.10.3-standalone/service-v1.json"] = "/*",
+               -- eks
+               -- ["https://raw.githubusercontent.com/weaveworks/eksctl/main/pkg/apis/eksctl.io/v1alpha5/assets/schema.json"] = "/*",
+               -- ["file:/home/harry/schema/eks-schema.json"] = "/*.yaml",
+               --
+               -- ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*"
+            },
+            schemaDownload = {  enable = true },
+            validate = true,
             customTags = {
                 -- AWS cloudformation tags
                 -- https://github.com/redhat-developer/yaml-language-server/issues/77
@@ -330,5 +355,9 @@ ls.add_snippets("all", {
 require("luasnip.loaders.from_vscode").lazy_load()
 
 
-
-
+-- Deno
+--To approrpiately highlight codefences returned from denols,
+--you will need to augment vim.g.markdown_fenced languages in your init.lua.
+vim.g.markdown_fenced_languages = {
+  "ts=typescript"
+}
